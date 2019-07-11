@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="ms2extend" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM">
+	<!--Product Tabs-->
+	<object class="ms2extProductTab" table="ms2ext_product_tabs" extends="xPDOSimpleObject">
+		<field key="name" dbtype="varchar" precision="255" phptype="string" null="true" />
+		<field key="fields" dbtype="text" phptype="string" null="true" default="NULL"/>
+	</object>
+</model>

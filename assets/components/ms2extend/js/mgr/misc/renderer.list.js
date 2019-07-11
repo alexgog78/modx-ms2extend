@@ -1,0 +1,3 @@
+ms2Extend.renderer = {
+	
+};
