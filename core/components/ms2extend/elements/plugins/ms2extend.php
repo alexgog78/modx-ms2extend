@@ -7,6 +7,8 @@ if (!($ms2Extend instanceof ms2Extend)) {
 	
 $modxEvent = $modx->event->name;
 switch ($modxEvent) {
+	case 'OnWebPageInit':
+	break;
 	case 'msOnManagerCustomCssJs':
 		//Product form extend
 		if (in_array($page, array('product_create', 'product_update'))) {

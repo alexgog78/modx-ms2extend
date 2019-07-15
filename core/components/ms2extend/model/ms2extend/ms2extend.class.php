@@ -20,7 +20,8 @@ class ms2Extend {
 			'assetsUrl' => $assetsUrl,
 			'jsUrl' => $assetsUrl . 'js/',
 			'cssUrl' => $assetsUrl . 'css/',
-			'connectorUrl' => $assetsUrl . 'connector.php'
+			'connectorUrl' => $assetsUrl . 'connector.php',
+			'actionUrl' => $assetsUrl . 'action.php'
 		), $config);
 		
 		$this->modx->addPackage('ms2extend', $this->config['modelPath']);
@@ -49,6 +50,22 @@ class ms2Extend {
 				}
 			break;
 			default:
+				$config_js = preg_replace(array('/^\n/', '/\t{5}/'), '', '
+					ms2ExtendConfig = {};
+					ms2ExtendConfig = {
+						cssUrl: "'.$this->config['cssUrl'] . 'web/",
+						jsUrl: "'.$this->config['jsUrl'] . 'web/",
+						actionUrl: "'.$this->config['actionUrl'].'"
+					};');
+				$this->modx->regClientStartupScript("<script type=\"text/javascript\">\n" . $config_js . "\n</script>", true);
+				
+				$config = $this->makePlaceholders($this->config);
+				if ($css = $this->modx->getOption('ms2ext_frontend_css')) {
+					$this->modx->regClientCSS(str_replace($config['placeholder'], $config['value'], $css));
+				}
+				if ($js = $this->modx->getOption('ms2ext_frontend_js')) {
+					$this->modx->regClientScript(str_replace($config['placeholder'], $config['value'], $js));
+				}
 			break;
 		}
 		
@@ -61,5 +78,20 @@ class ms2Extend {
 		}
 		
 		$this->initialized[$ctx] = true;
+	}
+	
+	
+	//Creating placeholders array
+	public function makePlaceholders(array $array = array()) {
+		$result = array('placeholder' => array(), 'value' => array());
+		foreach ($array as $key=>$value) {
+			if (is_array($value)) {
+				$result = array_merge_recursive($result, $this->makePlaceholders($value, $key . '.'));
+			} else {
+				$result['placeholder'][$key] = '[[+'.$key.']]';
+				$result['value'][$key] = $value;
+			}
+		}
+		return $result;
 	}
 }
