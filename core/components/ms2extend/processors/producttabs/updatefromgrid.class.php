@@ -2,6 +2,9 @@
 require_once (dirname(__FILE__) . '/update.class.php');
 
 class ms2extProductTabUpdateFromGridProcessor extends ms2extProductTabUpdateProcessor {
+	/**
+	 * @return mixed
+	 */
 	public function initialize() {
 		$data = $this->getProperty('data');
 		if (empty($data)) {

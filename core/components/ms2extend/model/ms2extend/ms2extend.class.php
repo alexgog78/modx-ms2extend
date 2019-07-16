@@ -1,12 +1,36 @@
 <?php
 class ms2Extend {
+	/**
+	 * @var modX
+	 */
 	public $modx;
+
+	/**
+	 * @var array
+	 */
 	public $config = array();
+
+	/**
+	 * @var pdoFetch
+	 */
 	public $pdoTools;
+
+	/**
+	 * @var array
+	 */
 	public $initialized = array();
+
+	/**
+	 * @var ms2extMgrLayoutHandler
+	 */
 	public $mgrLayoutHandler;
 
 
+	/**
+	 * ms2Extend constructor.
+	 * @param modX $modx
+	 * @param array $config
+	 */
 	function __construct(modX &$modx, array $config = array()) {
 		$this->modx = & $modx;
 
@@ -33,8 +57,13 @@ class ms2Extend {
 		}
 	}
 	
-	
-	//Context initialization
+
+	/**
+	 * Context initialization
+	 * @param string $ctx
+	 * @param array $scriptProperties
+	 * @return bool
+	 */
 	public function initialize($ctx = 'web', $scriptProperties = array()) {
 		$this->config = array_merge($this->config, $scriptProperties);
 		$this->config['ctx'] = $ctx;
@@ -53,8 +82,11 @@ class ms2Extend {
 
 		$this->initialized[$ctx] = true;
 	}
-	
-	
+
+
+	/**
+	 * @return bool
+	 */
 	public function initializeBackend() {
 		//Add JS and CSS
 		if($this->modx->controller){
@@ -73,9 +105,13 @@ class ms2Extend {
 			$this->modx->log(modX::LOG_LEVEL_ERROR, 'Could not initialize ms2extMgrLayoutHandler class');
 			return false;
 		}
+		return true;
 	}
-	
-	
+
+
+	/**
+	 * @return bool
+	 */
 	public function initializeFrontend() {
 		//Add JS and CSS
 		$configJs = $this->modx->toJSON(array(
@@ -92,5 +128,6 @@ class ms2Extend {
 		if ($frontendJs = $this->modx->getOption('ms2ext_frontend_js')) {
 			$this->modx->regClientScript(str_replace($config['pl'], $config['vl'], $frontendJs));
 		}
+		return true;
 	}
 }

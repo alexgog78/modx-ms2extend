@@ -1,17 +1,36 @@
 <?php
 class ms2extMgrLayoutHandler {
+	/**
+	 * @var ms2Extend
+	 */
 	private $ms2ext;
+
+	/**
+	 * @var array
+	 */
 	private $config = array();
+
+	/**
+	 * @var modX
+	 */
 	private $modx;
-	
-	
+
+
+	/**
+	 * ms2extMgrLayoutHandler constructor.
+	 * @param ms2Extend $ms2Extend
+	 * @param array $config
+	 */
 	function __construct(ms2Extend & $ms2Extend, array $config = array()) {
 		$this->ms2ext = & $ms2Extend;
 		$this->config = $config;
 		$this->modx = & $ms2Extend->modx;
 	}
-	
-	
+
+
+	/**
+	 * @param array $tabsIds
+	 */
 	public function getProductLayout($tabsIds = array()) {
 		$query = $this->modx->newQuery('ms2extProductTab');
 		$query->select($this->modx->getSelectColumns('ms2extProductTab', 'ms2extProductTab', ''));

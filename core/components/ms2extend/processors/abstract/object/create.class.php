@@ -1,9 +1,19 @@
 <?php
 abstract class ms2extCreateProcessor extends modObjectCreateProcessor {
+	/**
+	 * @var array
+	 */
 	public $languageTopics = array('ms2extend:default');
+
+	/**
+	 * @var string
+	 */
 	public $objectType = 'ms2extend';
-	
-	
+
+
+	/**
+	 * @return mixed
+	 */
 	public function beforeSet() {
 		//Combo-boolean
 		$boolean = array('active');
@@ -19,6 +29,9 @@ abstract class ms2extCreateProcessor extends modObjectCreateProcessor {
 	}
 
 
+	/**
+	 * @return bool
+	 */
 	public function beforeSave() {
 		if (!$this->validateRequiredFields()) {
 			return false;
@@ -31,6 +44,9 @@ abstract class ms2extCreateProcessor extends modObjectCreateProcessor {
 	}
 
 
+	/**
+	 * @return bool
+	 */
 	private function validateRequiredFields() {
 		foreach ($this->object::REQUIRED_FIELDS as $tmp) {
 			$property = $this->getProperty($tmp);
@@ -48,8 +64,11 @@ abstract class ms2extCreateProcessor extends modObjectCreateProcessor {
 		}
 		return true;
 	}
-	
-	
+
+
+	/**
+	 * @return bool
+	 */
 	private function validateUniqueFields() {
 		foreach ($this->object::UNIQUE_FIELDS as $tmp) {
 			$checkQuery = array(

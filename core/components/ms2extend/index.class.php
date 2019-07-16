@@ -3,9 +3,15 @@ require_once dirname(__FILE__) . '/model/ms2extend/ms2extend.class.php';
 
 
 abstract class ms2ExtendManagerController extends modExtraManagerController {
+	/**
+	 * @var ms2Extend
+	 */
 	public $ms2extend;
-	
-	
+
+
+	/**
+	 * @return mixed
+	 */
 	public function initialize() {
 		$this->ms2extend = new ms2Extend($this->modx);
 		
@@ -25,13 +31,19 @@ abstract class ms2ExtendManagerController extends modExtraManagerController {
 		
 		return parent::initialize();
 	}
-	
-	
+
+
+	/**
+	 * @return array
+	 */
 	public function getLanguageTopics() {
 		return array('ms2extend:default');
 	}
-	
-	
+
+
+	/**
+	 * @return bool
+	 */
 	public function checkPermissions() {
 		return true;
 	}
@@ -39,6 +51,9 @@ abstract class ms2ExtendManagerController extends modExtraManagerController {
 
 
 class IndexManagerController extends ms2ExtendManagerController {
+	/**
+	 * @return string
+	 */
 	public static function getDefaultController() {
 		return 'mgr/producttabs';
 	}
