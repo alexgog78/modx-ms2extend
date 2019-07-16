@@ -17,19 +17,19 @@ echo '<pre>';
 
 //Settings
 $sources = array(
-	'model' => MODX_CORE_PATH . 'components/' . PKG_NAME_LOWER . '/model/',
-	'schema_file' => MODX_CORE_PATH . 'components/' . PKG_NAME_LOWER . '/model/schema/' . PKG_NAME_LOWER . '.mysql.schema.xml',
+    'model' => MODX_CORE_PATH . 'components/' . PKG_NAME_LOWER . '/model/',
+    'schema_file' => MODX_CORE_PATH . 'components/' . PKG_NAME_LOWER . '/model/schema/' . PKG_NAME_LOWER . '.mysql.schema.xml',
 );
 
 
 //Validation
 if (!is_dir($sources['model'])) {
-	$modx->log(modX::LOG_LEVEL_ERROR, 'Model directory not found!');
-	die();
+    $modx->log(modX::LOG_LEVEL_ERROR, 'Model directory not found!');
+    die();
 }
 if (!file_exists($sources['schema_file'])) {
-	$modx->log(modX::LOG_LEVEL_ERROR, 'Schema file not found!');
-	die();
+    $modx->log(modX::LOG_LEVEL_ERROR, 'Schema file not found!');
+    die();
 }
 
 

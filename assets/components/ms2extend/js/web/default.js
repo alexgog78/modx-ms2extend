@@ -1,3 +1,3 @@
-$(window.miniShop2).ready(function() {
-	
+$(window.miniShop2).ready(function () {
+
 });

@@ -1,3 +1,1 @@
-ms2Extend.renderer = {
-	
-};
+ms2Extend.renderer = {};
