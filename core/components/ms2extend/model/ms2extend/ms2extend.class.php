@@ -96,10 +96,10 @@ class ms2Extend
         //Add JS and CSS
         if ($this->modx->controller) {
             $this->modx->controller->addHtml('
-				<script type="text/javascript">
-					ms2Extend = {};
-					ms2Extend.config = ' . $this->modx->toJSON($this->config) . ';
-				</script>'
+                <script type="text/javascript">
+                    ms2Extend = {};
+                    ms2Extend.config = ' . $this->modx->toJSON($this->config) . ';
+                </script>'
             );
         }
 

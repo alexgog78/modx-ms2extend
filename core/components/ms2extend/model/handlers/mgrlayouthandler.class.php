@@ -54,8 +54,8 @@ class ms2extMgrLayoutHandler
         }
 
         $configJs .= preg_replace(array('/^\n/', '/\t{5}/'), '', '
-			ms2Extend.tabs = ' . $this->modx->toJSON($tabs) . ';
-		');
+            ms2Extend.tabs = ' . $this->modx->toJSON($tabs) . ';
+        ');
         $this->modx->controller->addHtml('<script type="text/javascript">' . $configJs . '</script>');
         $this->modx->controller->addLastJavascript($this->config['jsUrl'] . 'mgr/extend/product/product.common.js');
     }
