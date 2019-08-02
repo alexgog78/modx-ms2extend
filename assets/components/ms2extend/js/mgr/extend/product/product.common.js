@@ -4,29 +4,17 @@ Ext.override(miniShop2.panel.Product, {
     },
 
     getFields: function (config) {
-        var originals = this.originals.getFields.call(this, config);
-        for (var i in originals) {
-            if (!originals.hasOwnProperty(i)) continue;
-            var item = originals[i];
+        var _this = this;
+        var originals = _this.originals.getFields.call(_this, config);
+        var resourceTabs = originals.find(item => item.id === 'modx-resource-tabs');
+        var productTabWrapper = resourceTabs.items.find(item => item.id === 'minishop2-product-tab');
+        var productTabs = productTabWrapper.items.find(item => item.id === 'minishop2-product-tabs');
 
-            if (item.id == 'modx-resource-tabs') {
-                for (var i2 in item.items) {
-                    if (!item.items.hasOwnProperty(i2)) {
-                        continue;
-                    }
-                    var tab = item.items[i2];
-                    if (tab.id == 'minishop2-product-tab') {
-                        for (key in ms2Extend.tabs) {
-                            if (!ms2Extend.tabs.hasOwnProperty(key)) {
-                                continue;
-                            }
-                            var dopTab = this.addTab(config, ms2Extend.tabs[key]);
-                            tab.items[0].items.splice(3, 0, dopTab);
-                        }
-                    }
-                }
-            }
-        }
+        Ext.each(ms2ExtendConfig.tabs, function(item) {
+            var newTab = _this.addTab(config, item);
+            productTabs.items.splice(3, 0, newTab);
+        });
+
         return originals;
     },
 

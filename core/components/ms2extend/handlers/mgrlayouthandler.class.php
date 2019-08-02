@@ -1,35 +1,29 @@
 <?php
 
-class ms2extMgrLayoutHandler
+namespace ms2Extend\Handlers;
+
+class mgrLayoutHandler
 {
-    /**
-     * @var ms2Extend
-     */
+    /** @var ms2Extend */
     private $ms2ext;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $config = array();
 
-    /**
-     * @var modX
-     */
+    /** @var modX */
     private $modx;
 
-
     /**
-     * ms2extMgrLayoutHandler constructor.
+     * mgrLayoutHandler constructor.
      * @param ms2Extend $ms2Extend
      * @param array $config
      */
-    function __construct(ms2Extend & $ms2Extend, array $config = array())
+    function __construct(\ms2Extend & $ms2Extend, array $config = array())
     {
         $this->ms2ext = &$ms2Extend;
         $this->config = $config;
         $this->modx = &$ms2Extend->modx;
     }
-
 
     /**
      * @param array $tabsIds
@@ -47,16 +41,14 @@ class ms2extMgrLayoutHandler
 
         $query->prepare();
         $query->stmt->execute();
-        $mas = $query->stmt->fetchAll(PDO::FETCH_ASSOC);
+        $mas = $query->stmt->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($mas as $item) {
             $item['fields'] = explode(',', $item['fields']);
             $tabs[] = $item;
         }
 
-        $configJs .= preg_replace(array('/^\n/', '/\t{5}/'), '', '
-            ms2Extend.tabs = ' . $this->modx->toJSON($tabs) . ';
-        ');
-        $this->modx->controller->addHtml('<script type="text/javascript">' . $configJs . '</script>');
+        $configJs = $this->modx->toJSON($tabs);
+        $this->modx->regClientStartupScript('<script type="text/javascript">ms2ExtendConfig.tabs = ' . $configJs . ';</script>', true);
         $this->modx->controller->addLastJavascript($this->config['jsUrl'] . 'mgr/extend/product/product.common.js');
     }
 }

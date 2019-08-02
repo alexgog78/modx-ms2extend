@@ -2,47 +2,41 @@
 
 class ms2Extend
 {
-    /**
-     * @var modX
-     */
+    const PACKAGE = 'ms2extend';
+
+    const HANDLERS = [
+        'mgr' => ['mgrLayoutHandler'],
+        'default' => []
+    ];
+
+    /** @var modX */
     public $modx;
 
-    /**
-     * @var array
-     */
-    public $config = array();
+    /** @var array */
+    public $config = [];
 
-    /**
-     * @var pdoFetch
-     */
+    /** @var array */
+    public $initialized = [];
+
+    /** @var pdoFetch */
     public $pdoTools;
-
-    /**
-     * @var array
-     */
-    public $initialized = array();
-
-    /**
-     * @var ms2extMgrLayoutHandler
-     */
-    public $mgrLayoutHandler;
-
 
     /**
      * ms2Extend constructor.
      * @param modX $modx
      * @param array $config
      */
-    function __construct(modX &$modx, array $config = array())
+    function __construct(modX &$modx, array $config = [])
     {
         $this->modx = &$modx;
 
-        $basePath = $this->modx->getOption('ms2extend.core_path', $config, $this->modx->getOption('core_path') . 'components/ms2extend/');
-        $assetsUrl = $this->modx->getOption('ms2extend.assets_url', $config, $this->modx->getOption('assets_url') . 'components/ms2extend/');
-        $this->config = array_merge(array(
+        $basePath = $this->modx->getOption(self::PACKAGE . '.core_path', $config, $this->modx->getOption('core_path') . 'components/' . self::PACKAGE . '/');
+        $assetsUrl = $this->modx->getOption(self::PACKAGE . '.assets_url', $config, $this->modx->getOption('assets_url') . 'components/' . self::PACKAGE . '/');
+        $this->config = array_merge([
             'basePath' => $basePath,
             'corePath' => $basePath,
             'modelPath' => $basePath . 'model/',
+            'handlersPath' => $basePath . 'handlers/',
             'processorsPath' => $basePath . 'processors/',
             'templatesPath' => $basePath . 'elements/templates/',
             'assetsUrl' => $assetsUrl,
@@ -50,16 +44,15 @@ class ms2Extend
             'cssUrl' => $assetsUrl . 'css/',
             'connectorUrl' => $assetsUrl . 'connector.php',
             'actionUrl' => $assetsUrl . 'action.php'
-        ), $config);
+        ], $config);
 
-        $this->modx->addPackage('ms2extend', $this->config['modelPath']);
-        $this->modx->lexicon->load('ms2extend:default');
+        $this->modx->addPackage(self::PACKAGE, $this->config['modelPath']);
+        $this->modx->lexicon->load(self::PACKAGE . ':default');
 
         if ($this->pdoTools = $this->modx->getService('pdoFetch')) {
             $this->pdoTools->setConfig($this->config);
         }
     }
-
 
     /**
      * Context initialization
@@ -67,7 +60,7 @@ class ms2Extend
      * @param array $scriptProperties
      * @return bool
      */
-    public function initialize($ctx = 'web', $scriptProperties = array())
+    public function initialize($ctx = 'web', $scriptProperties = [])
     {
         $this->config = array_merge($this->config, $scriptProperties);
         $this->config['ctx'] = $ctx;
@@ -75,6 +68,7 @@ class ms2Extend
             return true;
         }
 
+        $this->addHandlers($ctx);
         switch ($ctx) {
             case 'mgr':
                 $this->initializeBackend();
@@ -87,6 +81,24 @@ class ms2Extend
         $this->initialized[$ctx] = true;
     }
 
+    /**
+     * @param string $ctx
+     * @return bool
+     */
+    private function addHandlers($ctx = 'default')
+    {
+        $handlers = self::HANDLERS[$ctx] ?? self::HANDLERS['default'];
+        foreach ($handlers as $className) {
+            require_once $this->config['handlersPath'] . mb_strtolower($className) . '.class.php';
+            $classNamespace = get_class($this) . '\Handlers\\' . $className;
+            $this->$className = new $classNamespace($this, $this->config);
+            if (!($this->$className instanceof $classNamespace)) {
+                $this->modx->log(modX::LOG_LEVEL_ERROR, 'Could not initialize ' . $classNamespace . ' class');
+                return false;
+            }
+        }
+        return true;
+    }
 
     /**
      * @return bool
@@ -94,25 +106,10 @@ class ms2Extend
     public function initializeBackend()
     {
         //Add JS and CSS
-        if ($this->modx->controller) {
-            $this->modx->controller->addHtml('
-                <script type="text/javascript">
-                    ms2Extend = {};
-                    ms2Extend.config = ' . $this->modx->toJSON($this->config) . ';
-                </script>'
-            );
-        }
-
-        //MGR layout handler
-        require_once dirname(dirname(__FILE__)) . '/handlers/mgrlayouthandler.class.php';
-        $this->mgrLayoutHandler = new ms2extMgrLayoutHandler($this, $this->config);
-        if (!($this->mgrLayoutHandler instanceof ms2extMgrLayoutHandler)) {
-            $this->modx->log(modX::LOG_LEVEL_ERROR, 'Could not initialize ms2extMgrLayoutHandler class');
-            return false;
-        }
+        $configJs = $this->modx->toJSON($this->config);
+        $this->modx->regClientStartupScript('<script type="text/javascript">ms2ExtendConfig = ' . $configJs . ';</script>', true);
         return true;
     }
-
 
     /**
      * @return bool
