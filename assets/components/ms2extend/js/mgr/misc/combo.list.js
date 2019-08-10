@@ -7,4 +7,4 @@ ms2Extend.window.recordWindow = function (config) {
     ms2Extend.window.recordWindow.superclass.constructor.call(this, config);
 };
 Ext.extend(ms2Extend.window.recordWindow, MODx.Window);
-Ext.reg('ms2ext-window-record', ms2Extend.window.recordWindow);
+Ext.reg('ms2extend-window-record', ms2Extend.window.recordWindow);

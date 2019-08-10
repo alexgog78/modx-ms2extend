@@ -26,15 +26,15 @@
         
     * возможно изменение пути через системную настройку
     
-            ms2ext_frontend_js
+            ms2extend_frontend_js
             
 * CSS файл по умолчанию находится в
         
-        assets/components/ms2extend/сыы/web/default.css
+        assets/components/ms2extend/css/web/default.css
         
     * возможно изменение пути через системную настройку
-    
-            ms2ext_frontend_css
+
+            ms2extend_frontend_css
 
 ###Добавление функционала создания дополнительных вкладок товара с характеристиками в админке
 Управление доступно по адресу админки
@@ -58,5 +58,5 @@
 * ms2extend
 
 ###Системные настройки
-* ms2ext_frontend_js
-* ms2ext_frontend_css
+* ms2extend_frontend_js
+* ms2extend_frontend_css

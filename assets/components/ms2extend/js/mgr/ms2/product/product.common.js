@@ -1,9 +1,11 @@
-Ext.override(miniShop2.panel.Product, {
-    originals: {
+ms2ExtendConfig.productTab = {
+    /*originals: {
         getFields: miniShop2.panel.Product.prototype.getFields
-    },
+    },*/
 
-    getFields: function (config) {
+
+
+    /*getFields: function (config) {
         var _this = this;
         var originals = _this.originals.getFields.call(_this, config);
         var resourceTabs = originals.find(item => item.id === 'modx-resource-tabs');
@@ -16,13 +18,13 @@ Ext.override(miniShop2.panel.Product, {
         });
 
         return originals;
-    },
+    },*/
 
-    addTab: function (config, tab) {
+    getTab: function (config, tab) {
         var enabled = miniShop2.config.data_fields;
         var available = tab.fields;
 
-        var product_fields = this.getAllProductFields(config);
+        var product_fields = miniShop2.panel.Product.getAllProductFields(config);
         var col1 = [];
         var col2 = [];
         var tmp;
@@ -62,4 +64,24 @@ Ext.override(miniShop2.panel.Product, {
             listeners: {},
         };
     }
+};
+Ext.ComponentMgr.onAvailable('minishop2-product-tabs', function () {
+    this.on('beforerender', function () {
+        var panel = this;
+        var config = panel.config;
+        Ext.each(ms2ExtendConfig.tabs, function(tab) {
+
+            //panel.add(ms2ExtendConfig.productTab.getTab(config, tab));
+            //console.log(tab);
+
+            /*var newTab = _this.addTab(config, item);
+            productTabs.items.splice(3, 0, newTab);
+
+            this.add(ms2Bundle.productTab.getTab(item));*/
+        });
+
+        //this.add(msPromoCode.ms2tabProduct);
+
+        //this.add(ms2Bundle.productTab.getTab());
+    });
 });

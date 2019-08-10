@@ -1,19 +1,14 @@
 ms2Extend.grid.productTabs = function (config) {
     config = config || {};
+    if (!config.id) {
+        config.id = 'ms2extend-grid-product-tabs';
+    }
     Ext.applyIf(config, {
-        //Settings
-        id: 'ms2ext-grid-product-tabs',
         url: ms2Extend.config.connectorUrl,
         baseParams: {
-            action: 'producttabs/getlist'
+            action: 'mgr/producttabs/getlist'
         },
-        paging: true,
-        remoteSort: true,
-        anchor: '97%',
-        save_action: 'producttabs/updatefromgrid',
-        autosave: true,
-
-        //Grid
+        save_action: 'mgr/producttabs/updatefromgrid',
         fields: [
             'id',
             'name',
@@ -21,20 +16,8 @@ ms2Extend.grid.productTabs = function (config) {
         ],
         columns: [
             {header: _('id'), dataIndex: 'id', sortable: true, width: 0.05},
-            {
-                header: _('ms2ext.field.name'),
-                dataIndex: 'name',
-                sortable: true,
-                width: 0.2,
-                editor: {xtype: 'textfield'}
-            },
-            {
-                header: _('ms2ext.field.tab.fields'),
-                dataIndex: 'fields',
-                sortable: true,
-                width: 0.75,
-                editor: {xtype: 'textarea'}
-            }
+            {header: _('ms2extend.field.name'), dataIndex: 'name', sortable: true, width: 0.2, editor: {xtype: 'textfield'}},
+            {header: _('ms2extend.field.tab.fields'), dataIndex: 'fields', sortable: true, width: 0.75, editor: {xtype: 'textarea'}}
         ],
 
         //Toolbar
@@ -42,8 +25,8 @@ ms2Extend.grid.productTabs = function (config) {
             //Search panel
             {
                 xtype: 'textfield',
-                id: 'ms2ext-product-tabs-search-filter',
-                emptyText: _('ms2ext.controls.search'),
+                id: 'ms2extend-product-tabs-search-filter',
+                emptyText: _('ms2extend.controls.search'),
                 listeners: {
                     'change': {fn: ms2Extend.function.search, scope: this},
                     'render': {
@@ -63,48 +46,37 @@ ms2Extend.grid.productTabs = function (config) {
             },
             //Create button
             {
-                text: _('ms2ext.controls.create'),
+                text: _('ms2extend.controls.create'),
                 cls: 'primary-button',
                 scope: this,
                 handler: ms2Extend.function.createRecord,
                 baseParams: {
-                    action: 'producttabs/create',
+                    action: 'mgr/producttabs/create',
                     fields: this.getFields(),
                     defaults: {
                         active: true
                     }
                 }
             }
-        ],
-
-        //Grid row additional classes
-        viewConfig: {
-            forceFit: true,
-            getRowClass: function (record, index, rowParams, store) {
-                var rowClass = [];
-                if (record.get('active') == 0 || record.get('blocked') == 1)
-                    rowClass.push('grid-row-inactive');
-                return rowClass.join(' ');
-            }
-        }
+        ]
     });
     ms2Extend.grid.productTabs.superclass.constructor.call(this, config)
 };
-Ext.extend(ms2Extend.grid.productTabs, MODx.grid.Grid, {
+Ext.extend(ms2Extend.grid.productTabs, ms2Extend.grid.abstract, {
     //Context menu function
     getMenu: function () {
         return [{
-            text: _('ms2ext.controls.update'),
+            text: _('ms2extend.controls.update'),
             handler: ms2Extend.function.updateRecord,
             baseParams: {
-                action: 'producttabs/update',
+                action: 'mgr/producttabs/update',
                 fields: this.getFields('update')
             }
         }, '-', {
-            text: _('ms2ext.controls.remove'),
+            text: _('ms2extend.controls.remove'),
             handler: ms2Extend.function.removeRecord,
             baseParams: {
-                action: 'producttabs/remove'
+                action: 'mgr/producttabs/remove'
             }
         }];
     },
@@ -114,10 +86,10 @@ Ext.extend(ms2Extend.grid.productTabs, MODx.grid.Grid, {
         var fields = [];
         fields.push(
             {xtype: 'hidden', name: 'id'},
-            {xtype: 'textfield', name: 'name', fieldLabel: _('ms2ext.field.name'), anchor: '100%'},
-            {xtype: 'textarea', name: 'fields', fieldLabel: _('ms2ext.field.tab.fields'), anchor: '100%'}
+            {xtype: 'textfield', name: 'name', fieldLabel: _('ms2extend.field.name'), anchor: '100%'},
+            {xtype: 'textarea', name: 'fields', fieldLabel: _('ms2extend.field.tab.fields'), anchor: '100%'}
         );
         return fields;
     }
 });
-Ext.reg('ms2ext-grid-product-tabs', ms2Extend.grid.productTabs);
+Ext.reg('ms2extend-grid-product-tabs', ms2Extend.grid.productTabs);

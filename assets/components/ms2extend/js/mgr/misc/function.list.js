@@ -16,8 +16,8 @@ ms2Extend.function = {
         if (this.windows.updateWindow) this.windows.updateWindow.getEl().remove();
 
         this.windows.createWindow = MODx.load({
-            xtype: 'ms2ext-window-record',
-            title: _('ms2ext.controls.create'),
+            xtype: 'ms2extend-window-record',
+            title: _('ms2extend.controls.create'),
             width: options.width || 600,
             url: this.config.url,
             baseParams: {
@@ -47,8 +47,8 @@ ms2Extend.function = {
         if (this.windows.updateWindow) this.windows.updateWindow.getEl().remove();
 
         this.windows.updateWindow = MODx.load({
-            xtype: 'ms2ext-window-record',
-            title: _('ms2ext.controls.update'),
+            xtype: 'ms2extend-window-record',
+            title: _('ms2extend.controls.update'),
             width: options.width || 600,
             url: this.config.url,
             baseParams: {
@@ -76,8 +76,8 @@ ms2Extend.function = {
         var options = btn.options.baseParams;
 
         MODx.msg.confirm({
-            title: _('ms2ext.controls.remove'),
-            text: _('ms2ext.controls.remove_confirm'),
+            title: _('ms2extend.controls.remove'),
+            text: _('ms2extend.controls.remove_confirm'),
             url: this.config.url,
             params: {
                 action: options.action,

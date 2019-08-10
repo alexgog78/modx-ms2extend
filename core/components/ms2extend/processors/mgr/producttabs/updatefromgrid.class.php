@@ -1,10 +1,11 @@
 <?php
+
 require_once(dirname(__FILE__) . '/update.class.php');
 
 class ms2extProductTabUpdateFromGridProcessor extends ms2extProductTabUpdateProcessor
 {
     /**
-     * @return mixed
+     * @return bool|string|null
      */
     public function initialize()
     {
@@ -24,5 +25,4 @@ class ms2extProductTabUpdateFromGridProcessor extends ms2extProductTabUpdateProc
         return parent::initialize();
     }
 }
-
 return 'ms2extProductTabUpdateFromGridProcessor';

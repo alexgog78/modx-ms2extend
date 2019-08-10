@@ -1,66 +1,26 @@
 <?php
-require_once dirname(dirname(dirname(__FILE__))) . '/index.class.php';
 
+if (!class_exists('ms2ExtendManagerController')) {
+    require_once dirname(__FILE__) . '/manager.class.php';
+}
 
-class ControllersProductTabsManagerController extends ms2ExtendManagerController
+class ms2ExtendMgrProducttabsManagerController extends ms2ExtendManagerController
 {
     /**
      * @return string
-     */
-    public static function getDefaultController()
-    {
-        return 'producttabs';
-    }
-}
-
-
-class ms2ExtendProductTabsManagerController extends ms2ExtendManagerController
-{
-    /**
-     * @return mixed
      */
     public function getPageTitle()
     {
-        return $this->modx->lexicon('ms2ext.section.product-tabs');
+        return $this->modx->lexicon('ms2extend.section.product-tabs');
     }
 
     /**
-     * @return string
+     * @return void
      */
-    public function getTemplateFile()
-    {
-        return $this->ms2extend->config['templatesPath'] . 'product-tabs.tpl';
-    }
-
-    /**
-     * @param array $scriptProperties
-     */
-    public function process(array $scriptProperties = array())
-    {
-
-    }
-
     public function loadCustomCssJs()
     {
-        $this->addLastJavascript($this->ms2extend->config['jsUrl'] . 'mgr/sections/product.tabs.panel.js');
-        $this->addJavascript($this->ms2extend->config['jsUrl'] . 'mgr/widgets/product.tabs.grid.js');
+        parent::loadCustomCssJs();
+        $this->addJavascript($this->module->config['jsUrl'] . 'mgr/widgets/product.tabs.grid.js');
+        $this->addLastJavascript($this->module->config['jsUrl'] . 'mgr/sections/product.tabs.panel.js');
     }
-}
-
-
-class ControllersMs2ExtendManagerController extends ControllersProductTabsManagerController
-{
-    /**
-     * @return string
-     */
-    public static function getDefaultController()
-    {
-        return 'mgr/tabs';
-    }
-}
-
-
-class ms2ExtendMgrProductTabsManagerController extends ms2ExtendProductTabsManagerController
-{
-
 }
