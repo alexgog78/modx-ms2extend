@@ -1,4 +1,4 @@
-ms2ExtendConfig.productTab = {
+ms2Extend.productTab = {
     /*originals: {
         getFields: miniShop2.panel.Product.prototype.getFields
     },*/
@@ -20,29 +20,33 @@ ms2ExtendConfig.productTab = {
         return originals;
     },*/
 
-    getTab: function (config, tab) {
+    getTab: function (tab, config) {
+        console.log(config);
         var enabled = miniShop2.config.data_fields;
+        console.log(enabled);
         var available = tab.fields;
+        console.log(available);
 
-        var product_fields = miniShop2.panel.Product.getAllProductFields(config);
+        //var product_fields = miniShop2.panel.Product.prototype.getAllProductFields(config);
         var col1 = [];
         var col2 = [];
         var tmp;
         for (var i = 0; i < available.length; i++) {
             var field = available[i];
-            if ((enabled.length > 0 && enabled.indexOf(field) === -1) || this.active_fields.indexOf(field) !== -1) {
+            if ((enabled.length > 0 && enabled.indexOf(field) === -1) || miniShop2.panel.Product.prototype.active_fields.indexOf(field) !== -1) {
                 continue;
             }
-            if (tmp = product_fields[field]) {
-                this.active_fields.push(field);
-                tmp = this.getExtField(config, field, tmp);
+            //if (tmp = product_fields[field]) {
+                miniShop2.panel.Product.prototype.active_fields.push(field);
+                tmp = miniShop2.panel.Product.prototype.getExtField(config, field, tmp);
                 if (i % 2) {
                     col2.push(tmp);
                 } else {
                     col1.push(tmp);
                 }
-            }
+            //}
         }
+
 
         return {
             title: tab.name,
@@ -69,19 +73,8 @@ Ext.ComponentMgr.onAvailable('minishop2-product-tabs', function () {
     this.on('beforerender', function () {
         var panel = this;
         var config = panel.config;
-        Ext.each(ms2ExtendConfig.tabs, function(tab) {
-
-            //panel.add(ms2ExtendConfig.productTab.getTab(config, tab));
-            //console.log(tab);
-
-            /*var newTab = _this.addTab(config, item);
-            productTabs.items.splice(3, 0, newTab);
-
-            this.add(ms2Bundle.productTab.getTab(item));*/
+        Ext.each(ms2Extend.tabs, function(tab) {
+            panel.add(ms2Extend.productTab.getTab(tab, config));
         });
-
-        //this.add(msPromoCode.ms2tabProduct);
-
-        //this.add(ms2Bundle.productTab.getTab());
     });
 });

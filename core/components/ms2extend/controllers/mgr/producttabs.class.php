@@ -21,6 +21,7 @@ class ms2ExtendMgrProducttabsManagerController extends ms2ExtendManagerControlle
     {
         parent::loadCustomCssJs();
         $this->addJavascript($this->module->config['jsUrl'] . 'mgr/widgets/product.tabs.grid.js');
+        $this->addJavascript($this->module->config['jsUrl'] . 'mgr/widgets/product.tab.window.js');
         $this->addLastJavascript($this->module->config['jsUrl'] . 'mgr/sections/product.tabs.panel.js');
     }
 }

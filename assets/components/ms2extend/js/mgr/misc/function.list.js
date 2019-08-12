@@ -1,74 +1,48 @@
-ms2Extend.function = {
-    //Поиск
-    search: function (tf, nv, ov) {
-        var s = this.getStore();
-        s.baseParams.query = tf.getValue();
-        this.getBottomToolbar().changePage(1);
-        this.refresh();
-    },
-
-
+Ext.apply(ms2Extend.function, {
     //Создание записи
-    createRecord: function (btn, e) {
+    /*createRecord: function (btn, e) {
         var options = btn.baseParams;
 
-        if (this.windows.createWindow) this.windows.createWindow.getEl().remove();
-        if (this.windows.updateWindow) this.windows.updateWindow.getEl().remove();
+        console.log(this);
+        console.log(this.config.namespace);
+        console.log(111);
+        //var name = Ext.app.Application.instance.getName();
+        //console.log(name);
+        //var name = Ext.getApplication().getName();
+        //console.log(name);
 
-        this.windows.createWindow = MODx.load({
-            xtype: 'ms2extend-window-record',
-            title: _('ms2extend.controls.create'),
-            width: options.width || 600,
+
+        var window = new abstractModule.window.record({
+            title: _(this.config.namespace + '.controls.create'),
             url: this.config.url,
             baseParams: {
                 action: options.action
             },
             fields: options.fields,
-            listeners: {
-                success: {fn: this.refresh, scope: this},
-                hide: {
-                    fn: function () {
-                        this.refresh
-                    }
-                }
-            }
+            _this: this
         });
-
-        this.windows.createWindow.fp.getForm().reset().setValues(options.defaults);
-        this.windows.createWindow.show(e.target);
-    },
+        console.log(window);
+        window.fp.getForm().reset().setValues(options.defaults);
+        window.show(e.target);
+    },*/
 
 
     //Обновление записи
-    updateRecord: function (btn, e) {
+    /*updateRecord: function (btn, e) {
         var options = btn.options.baseParams;
-
-        if (this.windows.createWindow) this.windows.createWindow.getEl().remove();
-        if (this.windows.updateWindow) this.windows.updateWindow.getEl().remove();
-
-        this.windows.updateWindow = MODx.load({
-            xtype: 'ms2extend-window-record',
-            title: _('ms2extend.controls.update'),
-            width: options.width || 600,
+        var window = new ms2Extend.window.record({
+            title: _(this.config.namespace + '.controls.update'),
             url: this.config.url,
             baseParams: {
                 action: options.action
             },
-            record: this.menu.record,
             fields: options.fields,
-            listeners: {
-                success: {
-                    fn: function () {
-                        this.refresh();
-                    }, scope: this
-                }
-            }
+            _this: this
         });
-
-        this.windows.updateWindow.fp.getForm().reset();
-        this.windows.updateWindow.show(e.target);
-        this.windows.updateWindow.fp.getForm().setValues(this.menu.record);
-    },
+        window.fp.getForm().reset();
+        window.fp.getForm().setValues(this.menu.record);
+        window.show(e.target);
+    },*/
 
 
     //Удаление записи
@@ -96,4 +70,4 @@ ms2Extend.function = {
             }
         });
     }
-}
+});

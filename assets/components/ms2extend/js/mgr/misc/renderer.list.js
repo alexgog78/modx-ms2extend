@@ -1,1 +1,3 @@
-ms2Extend.renderer = {};
+Ext.apply(ms2Extend.renderer, {
+
+});
