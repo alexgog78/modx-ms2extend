@@ -3,15 +3,15 @@ Ext.onReady(function () {
         xtype: 'ms2extend-panel-product-tabs'
     });
 });
-ms2Extend.panel.groups = function (config) {
+ms2Extend.panel.productTabs = function (config) {
     config = config || {};
     if (!config.id) {
         config.id = 'ms2extend-panel-product-tabs';
     }
     Ext.apply(config, {});
-    ms2Extend.panel.groups.superclass.constructor.call(this, config);
+    ms2Extend.panel.productTabs.superclass.constructor.call(this, config);
 };
-Ext.extend(ms2Extend.panel.groups, abstractModule.panel.abstract, {
+Ext.extend(ms2Extend.panel.productTabs, abstractModule.panel.abstract, {
     pageHeader: _('ms2extend.section.product-tabs'),
 
     panelTabs: [{
@@ -20,4 +20,4 @@ Ext.extend(ms2Extend.panel.groups, abstractModule.panel.abstract, {
         xtype: 'ms2extend-grid-product-tabs',
     }]
 });
-Ext.reg('ms2extend-panel-product-tabs', ms2Extend.panel.groups);
+Ext.reg('ms2extend-panel-product-tabs', ms2Extend.panel.productTabs);

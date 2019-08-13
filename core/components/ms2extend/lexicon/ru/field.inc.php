@@ -1,2 +1,3 @@
 <?php
-$_lang['ms2extend.field.tab_fields'] = 'Поля';
+$_lang['ms2extend.field.tab.type'] = 'Тип';
+$_lang['ms2extend.field.tab.fields'] = 'Поля';

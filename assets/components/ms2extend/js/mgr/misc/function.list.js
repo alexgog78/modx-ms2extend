@@ -1,3 +1,1 @@
-Ext.apply(ms2Extend.function, {
-
-});
+Ext.apply(ms2Extend.function, {});

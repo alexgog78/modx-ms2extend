@@ -3,6 +3,8 @@
     <!--Product Tabs-->
     <object class="ms2extProductTab" table="ms2ext_product_tabs" extends="xPDOSimpleObject">
         <field key="name" dbtype="varchar" precision="255" phptype="string" null="true"/>
-        <field key="fields" dbtype="text" phptype="string" null="true" default="NULL"/>
+        <field key="type" dbtype="varchar" precision="50" phptype="string" null="true"/>
+        <field key="fields" dbtype="text" phptype="string" null="true"/>
+        <field key="active" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="1"/>
     </object>
 </model>

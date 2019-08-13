@@ -17,13 +17,17 @@ Ext.extend(ms2Extend.grid.productTabs, ms2Extend.grid.abstract, {
     gridFields: [
         'id',
         'name',
-        'fields'
+        'type',
+        'fields',
+        'active'
     ],
 
     gridColumns: [
         {header: _('id'), dataIndex: 'id', sortable: true, width: 0.05},
         {header: _('ms2extend.field.name'), dataIndex: 'name', sortable: true, width: 0.2, editor: {xtype: 'textfield'}},
-        {header: _('ms2extend.field.tab_fields'), dataIndex: 'fields', sortable: true, width: 0.75, editor: {xtype: 'textarea'}}
+        {header: _('ms2extend.field.tab.type'), dataIndex: 'type', sortable: true, width: 0.1},
+        {header: _('ms2extend.field.tab.fields'), dataIndex: 'fields', sortable: true, width: 0.6, editor: {xtype: 'textarea'}},
+        {header: _('ms2extend.field.active'), dataIndex: 'active', sortable: true, width: 0.1, editor: {xtype: 'combo-boolean', renderer: 'boolean'}}
     ],
 
     createRecordForm: {
@@ -44,6 +48,6 @@ Ext.extend(ms2Extend.grid.productTabs, ms2Extend.grid.abstract, {
         baseParams: {
             action: 'mgr/producttabs/remove'
         }
-    },
+    }
 });
 Ext.reg('ms2extend-grid-product-tabs', ms2Extend.grid.productTabs);

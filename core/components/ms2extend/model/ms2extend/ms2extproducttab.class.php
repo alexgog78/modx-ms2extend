@@ -6,13 +6,13 @@ if (!class_exists('amSimpleObject')) {
 
 class ms2extProductTab extends amSimpleObject
 {
-    const REQUIRED_FIELDS = array(
+    const REQUIRED_FIELDS = [
         'name'
-    );
+    ];
 
-    const UNIQUE_FIELDS = array(
+    const UNIQUE_FIELDS = [
         'name'
-    );
+    ];
 
-    const UNIQUE_FIELDS_CHECK_BY_CONDITIONS = array();
+    const UNIQUE_FIELDS_CHECK_BY_CONDITIONS = [];
 }
