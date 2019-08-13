@@ -1,6 +1,6 @@
 ms2Extend = function (config) {
     config = config || {};
-    config.namespace = 'ms2extend';
+    config.lexicon_namespace = 'ms2extend';
     ms2Extend.superclass.constructor.call(this, config);
 };
 Ext.extend(ms2Extend, Ext.Component, abstractModule);

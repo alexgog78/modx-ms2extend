@@ -6,32 +6,40 @@ Ext.onReady(function () {
 ms2Extend.panel.groups = function (config) {
     config = config || {};
     Ext.apply(config, {
-        border: false,
-        baseCls: 'modx-formpanel',
+        //border: false,
+        //baseCls: 'modx-formpanel',
         cls: 'container',
         items: [{
             html: '<h2>' + _('ms2extend.section.product-tabs') + '</h2>',
-            border: false,
+            //border: false,
             cls: 'modx-page-header'
         }, {
             xtype: 'modx-tabs',
-            defaults: {
+            /*defaults: {
                 border: false,
                 autoHeight: true
-            },
-            border: true,
-
+            },*/
+            //border: true,
+            stateful: true,
+            stateId: 'jpayments-panel-payments-vtabs',
+            stateEvents: ['tabchange'],
+            getState: function () {
+                return {
+                    activeTab:this.items.indexOf(this.getActiveTab())
+                };
+             },
             items: [{
                 title: _('ms2extend.tab.product-tabs'),
-                defaults: {autoHeight: true},
+                //defaults: {autoHeight: true},
+                layout: 'anchor',
                 items: [{
                     html: '<p>' + _('ms2extend.tab.product-tabs.management') + '</p>',
-                    border: false,
+                    //border: false,
                     bodyCssClass: 'panel-desc'
                 }, {
                     xtype: 'ms2extend-grid-product-tabs',
                     cls: 'main-wrapper',
-                    preventRender: true
+                    //preventRender: true
                 }]
             }]
         }]
