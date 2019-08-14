@@ -19,14 +19,15 @@ Ext.extend(ms2Extend.grid.productTabs, ms2Extend.grid.abstract, {
         'name',
         'type',
         'fields',
+        'fields_array',
         'active'
     ],
 
     gridColumns: [
         {header: _('id'), dataIndex: 'id', sortable: true, width: 0.05},
         {header: _('ms2extend.field.name'), dataIndex: 'name', sortable: true, width: 0.2, editor: {xtype: 'textfield'}},
-        {header: _('ms2extend.field.tab.type'), dataIndex: 'type', sortable: true, width: 0.1},
-        {header: _('ms2extend.field.tab.fields'), dataIndex: 'fields', sortable: true, width: 0.6, editor: {xtype: 'textarea'}},
+        {header: _('ms2extend.field.tab.type'), dataIndex: 'type', sortable: true, width: 0.1, editor: {xtype: 'ms2extend-combo-select-type'}},
+        {header: _('ms2extend.field.tab.fields'), dataIndex: 'fields_array', sortable: true, width: 0.6,  renderer: ms2Extend.renderer.tabFields},
         {header: _('ms2extend.field.active'), dataIndex: 'active', sortable: true, width: 0.1, editor: {xtype: 'combo-boolean', renderer: 'boolean'}}
     ],
 

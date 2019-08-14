@@ -33,11 +33,7 @@ class mgrLayoutHandler extends \abstractModule\Handlers\abstractHandler
         }
         $query->prepare();
         $query->stmt->execute();
-        $mas = $query->stmt->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($mas as $item) {
-            $item['fields'] = explode(',', $item['fields']);
-            $tabs[] = $item;
-        }
+        $tabs = $query->stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $this->modx->controller->addLexiconTopic($this->module->package . ':default');
         $configJs = $this->modx->toJSON($tabs ?? []);

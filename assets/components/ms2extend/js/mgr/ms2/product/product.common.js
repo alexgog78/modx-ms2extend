@@ -8,6 +8,7 @@ Ext.ComponentMgr.onAvailable('minishop2-product-tabs', function () {
         var panelTabs = [];
         Ext.each(ms2Extend.tabs, function(tab) {
             var tabFields = [];
+            tab.fields = Ext.decode(tab.fields, true);
             Ext.each(tab.fields, function(field) {
                 switch (tab.type) {
                     case 'xtype':

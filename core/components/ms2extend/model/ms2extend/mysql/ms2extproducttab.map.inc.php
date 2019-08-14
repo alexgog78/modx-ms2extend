@@ -34,7 +34,7 @@ $xpdo_meta_map['ms2extProductTab']= array (
     'fields' => 
     array (
       'dbtype' => 'text',
-      'phptype' => 'string',
+      'phptype' => 'json',
       'null' => true,
     ),
     'active' => 
