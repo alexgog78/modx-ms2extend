@@ -13,7 +13,7 @@ $xpdo_meta_map['ms2extProductTab'] = array(
             'name' => NULL,
             'type' => NULL,
             'fields' => NULL,
-            'active' => 1,
+            'is_active' => 1,
         ),
     'fieldMeta' =>
         array(
@@ -37,7 +37,7 @@ $xpdo_meta_map['ms2extProductTab'] = array(
                     'phptype' => 'json',
                     'null' => true,
                 ),
-            'active' =>
+            'is_active' =>
                 array(
                     'dbtype' => 'tinyint',
                     'precision' => '1',

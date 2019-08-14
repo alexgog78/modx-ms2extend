@@ -5,6 +5,6 @@
         <field key="name" dbtype="varchar" precision="255" phptype="string" null="true"/>
         <field key="type" dbtype="varchar" precision="50" phptype="string" null="true"/>
         <field key="fields" dbtype="text" phptype="json" null="true"/>
-        <field key="active" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="1"/>
+        <field key="is_active" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="1"/>
     </object>
 </model>

@@ -11,7 +11,7 @@ ms2Extend.panel.productTabs = function (config) {
     Ext.apply(config, {});
     ms2Extend.panel.productTabs.superclass.constructor.call(this, config);
 };
-Ext.extend(ms2Extend.panel.productTabs, abstractModule.panel.abstract, {
+Ext.extend(ms2Extend.panel.productTabs, ms2Extend.panel.abstract, {
     pageHeader: _('ms2extend.section.product-tabs'),
 
     panelTabs: [{
