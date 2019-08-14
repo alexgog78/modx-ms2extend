@@ -13,9 +13,16 @@ class mgrLayoutHandler extends \abstractModule\Handlers\abstractHandler
      */
     public function getProductLayout($resource, $tabsIds = [])
     {
+        $response = $this->module->invokeEvent('ms2extOnGetProductTabs', [
+            'resource' => $resource,
+            'tabsIds' => $tabsIds
+        ]);
+        if (isset($response['returnedValues']['tabsIds'])) {
+            $tabsIds = $response['returnedValues']['tabsIds'];
+        }
+
         $query = $this->modx->newQuery('ms2extProductTab');
         $query->select($this->modx->getSelectColumns('ms2extProductTab', 'ms2extProductTab', ''));
-
         $query->where([
             'active' => 1
         ]);
@@ -24,7 +31,6 @@ class mgrLayoutHandler extends \abstractModule\Handlers\abstractHandler
                 'id:IN' => $tabsIds
             ]);
         }
-
         $query->prepare();
         $query->stmt->execute();
         $mas = $query->stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -33,7 +39,7 @@ class mgrLayoutHandler extends \abstractModule\Handlers\abstractHandler
             $tabs[] = $item;
         }
 
-        $this->modx->controller->addLexiconTopic(get_class($this->module) . ':default');
+        $this->modx->controller->addLexiconTopic($this->module->package . ':default');
         $configJs = $this->modx->toJSON($tabs ?? []);
         $this->modx->controller->addHtml('<script type="text/javascript">' . get_class($this->module) . '.tabs = ' . $configJs . ';</script>');
         $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/ms2/product/product.tabs.panel.js');
