@@ -22,7 +22,11 @@ class mgrLayoutHandler extends \abstractModule\Handlers\abstractHandler
         }
 
         $query = $this->modx->newQuery('ms2extProductTab');
-        $query->select($this->modx->getSelectColumns('ms2extProductTab', 'ms2extProductTab', ''));
+        $query->select($this->modx->getSelectColumns(
+            'ms2extProductTab',
+            'ms2extProductTab',
+            ''
+        ));
         $query->where([
             'active' => 1
         ]);
@@ -37,7 +41,9 @@ class mgrLayoutHandler extends \abstractModule\Handlers\abstractHandler
 
         $this->modx->controller->addLexiconTopic($this->module->package . ':default');
         $configJs = $this->modx->toJSON($tabs ?? []);
-        $this->modx->controller->addHtml('<script type="text/javascript">' . get_class($this->module) . '.tabs = ' . $configJs . ';</script>');
+        $this->modx->controller->addHtml(
+            '<script type="text/javascript">' . get_class($this->module) . '.tabs = ' . $configJs . ';</script>'
+        );
         $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/ms2/product/product.tabs.panel.js');
         $this->modx->controller->addLastJavascript($this->config['jsUrl'] . 'mgr/ms2/product/product.common.js');
     }

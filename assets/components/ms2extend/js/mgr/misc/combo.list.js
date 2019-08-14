@@ -27,5 +27,3 @@ ms2Extend.combo.multiSelectFields = function (config) {
 };
 Ext.extend(ms2Extend.combo.multiSelectFields, ms2Extend.combo.multiSelectLocal);
 Ext.reg('ms2extend-combo-multiselect-fields', ms2Extend.combo.multiSelectFields);
-
-

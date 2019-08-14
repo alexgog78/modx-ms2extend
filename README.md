@@ -50,12 +50,17 @@
 
 ###Верхнее меню
 * 
-    * Ключ словаря: **ms2ext**
-    * Описание: **ms2ext.management**
+    * Ключ словаря: **ms2extend**
+    * Описание: **ms2extend.management**
     * Пространство имён: **ms2extend**
 
 ###Плагины
 * ms2extend
+
+###Системные события
+* ms2extOnGetProductTabs
+    * resource: **объект текущего ресурса**
+    * tabsIds: **массив ID вкладок для отображения**
 
 ###Системные настройки
 * ms2extend_frontend_js

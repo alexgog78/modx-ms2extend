@@ -27,7 +27,9 @@ class ms2Extend extends abstractModule
         $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/misc/renderer.list.js');
         $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/misc/combo.list.js');
         $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/misc/function.list.js');
-        $this->modx->controller->addHtml('<script type="text/javascript">' . get_class($this) . '.config = ' . $configJs . ';</script>');
+        $this->modx->controller->addHtml(
+            '<script type="text/javascript">' . get_class($this) . '.config = ' . $configJs . ';</script>'
+        );
         return true;
     }
 

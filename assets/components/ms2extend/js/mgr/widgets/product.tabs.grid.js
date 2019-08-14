@@ -1,6 +1,5 @@
 ms2Extend.grid.productTabs = function (config) {
     config = config || {};
-    config.lexicon_namespace = ms2Extend.lexicon_namespace;
     if (!config.id) {
         config.id = 'ms2extend-grid-product-tabs';
     }
@@ -14,6 +13,15 @@ ms2Extend.grid.productTabs = function (config) {
     ms2Extend.grid.productTabs.superclass.constructor.call(this, config);
 };
 Ext.extend(ms2Extend.grid.productTabs, ms2Extend.grid.abstract, {
+    lexicons: {
+        search: _('ms2extend.controls.search'),
+        search_clear: _('ms2extend.controls.search_clear'),
+        create: _('ms2extend.controls.create'),
+        update: _('ms2extend.controls.update'),
+        remove: _('ms2extend.controls.remove'),
+        remove_confirm: _('ms2extend.controls.remove_confirm')
+    },
+
     gridFields: [
         'id',
         'name',
