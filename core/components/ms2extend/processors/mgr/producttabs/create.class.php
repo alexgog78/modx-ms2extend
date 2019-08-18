@@ -8,5 +8,8 @@ class ms2extProductTabCreateProcessor extends amObjectCreateProcessor
 {
     /** @var string */
     public $classKey = 'ms2extProductTab';
+
+    /** @var string */
+    public $objectType = 'ms2extend';
 }
 return 'ms2extProductTabCreateProcessor';

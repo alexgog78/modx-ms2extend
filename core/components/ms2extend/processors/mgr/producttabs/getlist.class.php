@@ -9,6 +9,9 @@ class ms2extProductTabGetListProcessor extends amObjectGetListProcessor
     /** @var string */
     public $classKey = 'ms2extProductTab';
 
+    /** @var string */
+    public $objectType = 'ms2extend';
+
     /**
      * @param xPDOQuery $c
      * @param string $query

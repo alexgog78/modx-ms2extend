@@ -6,6 +6,10 @@ if (!class_exists('amSimpleObject')) {
 
 class ms2extProductTab extends amSimpleObject
 {
+    const BOOLEAN_FIELDS = [
+        'is_active'
+    ];
+
     const REQUIRED_FIELDS = [
         'name'
     ];
