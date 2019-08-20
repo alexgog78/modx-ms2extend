@@ -29,18 +29,12 @@ class ms2extProductTabGetListProcessor extends amObjectGetListProcessor
      * @param xPDOObject $object
      * @return array
      */
-    public function prepareRow(xPDOObject $object) {
+    public function prepareRow(xPDOObject $object)
+    {
         $objectArray = parent::prepareRow($object);
-
-        $objectArray['fields_array'] = [];
-        foreach ($object->get('fields') as $field) {
-            if (empty($field)) {
-                continue;
-            }
-            $objectArray['fields_array'][] = ['field' => $field];
-        }
-
+        $objectArray['fields_array'] = $object->getFieldsArray();
         return $objectArray;
     }
 }
+
 return 'ms2extProductTabGetListProcessor';

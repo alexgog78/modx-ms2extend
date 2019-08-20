@@ -12,4 +12,5 @@ class ms2extProductTabUpdateProcessor extends amObjectUpdateProcessor
     /** @var string */
     public $objectType = 'ms2extend';
 }
+
 return 'ms2extProductTabUpdateProcessor';

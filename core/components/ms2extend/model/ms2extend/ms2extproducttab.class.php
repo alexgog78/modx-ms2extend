@@ -19,4 +19,19 @@ class ms2extProductTab extends amSimpleObject
     ];
 
     const UNIQUE_FIELDS_CHECK_BY_CONDITIONS = [];
+
+    /**
+     * @return array
+     */
+    public function getFieldsArray()
+    {
+        $fields = [];
+        foreach ($this->get('fields') as $field) {
+            if (empty($field)) {
+                continue;
+            }
+            $fields[] = ['field' => $field];
+        }
+        return $fields;
+    }
 }

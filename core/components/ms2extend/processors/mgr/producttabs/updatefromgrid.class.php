@@ -25,4 +25,5 @@ class ms2extProductTabUpdateFromGridProcessor extends ms2extProductTabUpdateProc
         return parent::initialize();
     }
 }
+
 return 'ms2extProductTabUpdateFromGridProcessor';

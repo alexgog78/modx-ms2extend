@@ -12,4 +12,5 @@ class ms2extProductTabRemoveProcessor extends amObjectRemoveProcessor
     /** @var string */
     public $objectType = 'ms2extend';
 }
+
 return 'ms2extProductTabRemoveProcessor'; 

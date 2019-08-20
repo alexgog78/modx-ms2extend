@@ -24,8 +24,9 @@ class ms2Extend extends abstractModule
         $configJs = $this->modx->toJSON($this->config ?? []);
         $this->modx->controller->addCss($this->config['cssUrl'] . 'mgr/default.css');
         $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/ms2extend.js');
+        $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/combo/type.select.js');
+        $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/combo/fields.multiselect.js');
         $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/misc/renderer.list.js');
-        $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/misc/combo.list.js');
         $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/misc/function.list.js');
         $this->modx->controller->addHtml(
             '<script type="text/javascript">' . get_class($this) . '.config = ' . $configJs . ';</script>'
