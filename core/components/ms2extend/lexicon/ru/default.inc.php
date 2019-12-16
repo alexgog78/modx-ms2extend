@@ -1,10 +1,12 @@
 <?php
 
+$prefix = 'ms2extend';
+
 $cultureKey = basename(dirname(__FILE__));
 $baseLexicons = MODX_CORE_PATH . 'components/abstractmodule/lexicon/lexicon.class.php';
 if (file_exists($baseLexicons)) {
     require_once $baseLexicons;
-    $abstractLexicon = new amLexicon('ms2extend', $cultureKey);
+    $abstractLexicon = new amLexicon($prefix, $cultureKey);
     $_abstract_lang = $abstractLexicon->loadLanguageTopics();
     $_lang = array_merge($_abstract_lang, $_lang ?? []);
 }
@@ -17,5 +19,5 @@ foreach ($files as $file) {
 }
 
 //Common
-$_lang['ms2extend'] = 'ms2Extend';
-$_lang['ms2extend.management'] = 'Расширение Minishop2';
+$_lang[$prefix] = 'ms2Extend';
+$_lang[$prefix . '.management'] = 'Расширение Minishop2';

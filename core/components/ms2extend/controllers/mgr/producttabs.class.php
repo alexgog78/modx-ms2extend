@@ -11,7 +11,7 @@ class ms2ExtendMgrProducttabsManagerController extends ms2ExtendManagerControlle
      */
     public function getPageTitle()
     {
-        return $this->modx->lexicon('ms2extend.section.product-tabs');
+        return $this->getLexicon('section.product_tabs');
     }
 
     /**
@@ -20,8 +20,7 @@ class ms2ExtendMgrProducttabsManagerController extends ms2ExtendManagerControlle
     public function loadCustomCssJs()
     {
         parent::loadCustomCssJs();
-        $this->addJavascript($this->module->config['jsUrl'] . 'mgr/widgets/product.tabs.grid.js');
-        $this->addJavascript($this->module->config['jsUrl'] . 'mgr/widgets/product.tab.window.js');
-        $this->addLastJavascript($this->module->config['jsUrl'] . 'mgr/sections/product.tabs.panel.js');
+        $this->loadProductTabsCssJs();
+        $this->addLastJavascript($this->module->config['jsUrl'] . 'mgr/sections/producttab/producttabs.panel.js');
     }
 }

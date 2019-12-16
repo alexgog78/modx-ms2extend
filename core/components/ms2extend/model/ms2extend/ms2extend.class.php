@@ -6,47 +6,31 @@ if (!class_exists('abstractModule')) {
 
 class ms2Extend extends abstractModule
 {
-    /** @var string */
-    public $package = 'ms2extend';
-
     /** @var array */
     public $handlers = [
-        'mgr' => ['mgrLayoutHandler'],
-        'default' => []
+        'mgr' => [
+            'mgrProduct' => 'ms2ExtendMgrProduct'
+        ],
+        'default' => [],
     ];
 
-    /**
-     * @return bool
-     */
-    public function initializeBackend()
-    {
-        parent::initializeBackend();
-        $configJs = $this->modx->toJSON($this->config ?? []);
-        $this->modx->controller->addCss($this->config['cssUrl'] . 'mgr/default.css');
-        $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/ms2extend.js');
-        $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/combo/type.select.js');
-        $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/combo/fields.multiselect.js');
-        $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/misc/renderer.list.js');
-        $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/misc/function.list.js');
-        $this->modx->controller->addHtml(
-            '<script type="text/javascript">' . get_class($this) . '.config = ' . $configJs . ';</script>'
-        );
-        return true;
-    }
+    /** @var string|null */
+    protected $tablePrefix = 'ms2extend_';
 
     /**
+     * @param modManagerController $controller
      * @return bool
      */
-    public function initializeFrontend()
+    public function addBackendAssets(modManagerController $controller)
     {
-        parent::initializeFrontend();
-        $config = $this->pdoTools->makePlaceholders($this->config);
-        if ($frontendCss = $this->modx->getOption($this->package . '_frontend_css')) {
-            $this->modx->regClientCSS(str_replace($config['pl'], $config['vl'], $frontendCss));
-        }
-        if ($frontendJs = $this->modx->getOption($this->package . '_frontend_js')) {
-            $this->modx->regClientScript(str_replace($config['pl'], $config['vl'], $frontendJs));
-        }
+        parent::addBackendAssets($controller);
+        $controller->addCss($this->config['cssUrl'] . 'mgr/default.css');
+        $controller->addJavascript($this->config['jsUrl'] . 'mgr/' . $this->objectType . '.js');
+        $controller->addJavascript($this->config['jsUrl'] . 'mgr/combo/field.multiselect.js');
+        $controller->addJavascript($this->config['jsUrl'] . 'mgr/combo/xtype.multiselect.js');
+        $controller->addJavascript($this->config['jsUrl'] . 'mgr/combo/browser.js');
+        $controller->addJavascript($this->config['jsUrl'] . 'mgr/util/panel.notice.indevelopment.js');
+        $controller->addJavascript($this->config['jsUrl'] . 'mgr/util/panel.notice.undefined.js');
         return true;
     }
 }

@@ -1,3 +1,4 @@
 <?php
-$_lang['ms2extend.field.tab.type'] = 'Тип';
-$_lang['ms2extend.field.tab.fields'] = 'Поля';
+
+$_lang[$prefix . '.field.product_tab.fields'] = 'Поля';
+$_lang[$prefix . '.field.product_tab.xtypes'] = 'ExtJS';

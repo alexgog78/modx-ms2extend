@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model package="ms2extend" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM">
-    <!--Product Tabs-->
-    <object class="ms2extProductTab" table="ms2ext_product_tabs" extends="xPDOSimpleObject">
+<model package="ms2extend" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" tablePrefix="ms2extend_" version="1.0">
+    <object class="ms2extendProductTab" table="product_tabs" extends="xPDOSimpleObject">
         <field key="name" dbtype="varchar" precision="255" phptype="string" null="true"/>
-        <field key="type" dbtype="varchar" precision="50" phptype="string" null="true"/>
         <field key="fields" dbtype="text" phptype="json" null="true"/>
+        <field key="xtypes" dbtype="text" phptype="json" null="true"/>
+        <field key="menuindex" dbtype="int" precision="10" attributes="unsigned" phptype="integer" default="0"/>
         <field key="is_active" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="1"/>
+        <!--Indexes-->
+        <index alias="menuindex" name="menuindex" primary="false" unique="false" type="BTREE">
+            <column key="menuindex" length="" collation="A" null="false"/>
+        </index>
+        <index alias="is_active" name="is_active" primary="false" unique="false" type="BTREE">
+            <column key="is_active" length="" collation="A" null="false"/>
+        </index>
     </object>
 </model>
