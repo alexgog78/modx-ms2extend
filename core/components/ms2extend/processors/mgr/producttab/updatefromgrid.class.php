@@ -1,6 +1,8 @@
 <?php
 
-require_once(dirname(__FILE__) . '/update.class.php');
+if (!class_exists('ms2extendProductTabUpdateProcessor')) {
+    require_once(dirname(__FILE__) . '/update.class.php');
+}
 
 class ms2extendProductTabUpdateFromGridProcessor extends ms2extendProductTabUpdateProcessor
 {
