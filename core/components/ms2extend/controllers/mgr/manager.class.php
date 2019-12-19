@@ -29,7 +29,7 @@ abstract class ms2ExtendManagerController extends amManagerController
      */
     protected function loadProductTabsCssJs()
     {
-        $this->addJavascript($this->module->config['jsUrl'] . 'mgr/widgets/producttab/producttab.grid.js');
-        $this->addJavascript($this->module->config['jsUrl'] . 'mgr/widgets/producttab/producttab.window.js');
+        $this->addJavascript($this->module->config['jsUrl'] . 'mgr/widgets/producttab/grid.js');
+        $this->addJavascript($this->module->config['jsUrl'] . 'mgr/widgets/producttab/window.js');
     }
 }

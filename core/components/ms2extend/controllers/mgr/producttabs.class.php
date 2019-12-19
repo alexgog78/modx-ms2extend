@@ -11,7 +11,7 @@ class ms2ExtendMgrProducttabsManagerController extends ms2ExtendManagerControlle
      */
     public function getPageTitle()
     {
-        return $this->getLexicon('section.product_tabs');
+        return $this->getLexicon('section.producttabs');
     }
 
     /**
@@ -21,6 +21,6 @@ class ms2ExtendMgrProducttabsManagerController extends ms2ExtendManagerControlle
     {
         parent::loadCustomCssJs();
         $this->loadProductTabsCssJs();
-        $this->addLastJavascript($this->module->config['jsUrl'] . 'mgr/sections/producttab/producttabs.panel.js');
+        $this->addLastJavascript($this->module->config['jsUrl'] . 'mgr/sections/producttab/panel.js');
     }
 }
