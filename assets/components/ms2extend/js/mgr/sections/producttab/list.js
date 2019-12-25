@@ -1,6 +1,12 @@
 'use strict';
 
-ms2Extend.panel.productTab = function (config) {
+Ext.onReady(function () {
+    MODx.add({
+        xtype: 'ms2extend-panel-producttabs'
+    });
+});
+
+ms2Extend.panel.productTabs = function (config) {
     config = config || {};
     if (!config.id) {
         config.id = 'ms2extend-panel-producttab';
@@ -8,9 +14,9 @@ ms2Extend.panel.productTab = function (config) {
     Ext.applyIf(config, {
         pageHeader: _('ms2extend.section.producttabs')
     });
-    ms2Extend.panel.productTab.superclass.constructor.call(this, config);
+    ms2Extend.panel.productTabs.superclass.constructor.call(this, config);
 };
-Ext.extend(ms2Extend.panel.productTab, ms2Extend.panel.simple, {
+Ext.extend(ms2Extend.panel.productTabs, ms2Extend.panel.abstract, {
     getContent: function () {
         return [
             this.renderDescription(_('ms2extend.tab.producttabs.management')),
@@ -18,9 +24,4 @@ Ext.extend(ms2Extend.panel.productTab, ms2Extend.panel.simple, {
         ];
     }
 });
-Ext.reg('ms2extend-panel-producttab', ms2Extend.panel.productTab);
-Ext.onReady(function () {
-    MODx.add({
-        xtype: 'ms2extend-panel-producttab'
-    });
-});
+Ext.reg('ms2extend-panel-producttabs', ms2Extend.panel.productTabs);

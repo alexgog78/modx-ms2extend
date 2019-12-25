@@ -19,8 +19,8 @@ class ms2ExtendMgrProduct extends amHandler
     private $tabs = [];
 
     /**
-     * abstractHandler constructor.
-     * @param abstractModule $module
+     * ms2Extend constructor.
+     * @param ms2Extend $module
      * @param array $config
      */
     public function __construct(& $module, array $config = [])

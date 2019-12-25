@@ -25,7 +25,7 @@ class ms2extendProductTabFieldGetListProcessor extends modObjectProcessor
 
         $this->fields = $this->getFields();
         $this->filterQuery();
-        $rows = $this->prepareRows();
+        $rows = $this->prepareRows() ?? [];
         return $this->outputArray(array_slice($rows, $this->start, $this->limit), count($rows));
     }
 

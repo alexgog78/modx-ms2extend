@@ -29,8 +29,8 @@ class ms2Extend extends abstractModule
         $controller->addJavascript($this->config['jsUrl'] . 'mgr/combo/field.multiselect.js');
         $controller->addJavascript($this->config['jsUrl'] . 'mgr/combo/xtype.multiselect.js');
         $controller->addJavascript($this->config['jsUrl'] . 'mgr/combo/browser.js');
-        $controller->addJavascript($this->config['jsUrl'] . 'mgr/util/panel.notice.indevelopment.js');
-        $controller->addJavascript($this->config['jsUrl'] . 'mgr/util/panel.notice.undefined.js');
+        $controller->addJavascript($this->config['jsUrl'] . 'mgr/utils/notice.indevelopment.js');
+        $controller->addJavascript($this->config['jsUrl'] . 'mgr/utils/notice.undefined.js');
         return true;
     }
 }
