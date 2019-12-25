@@ -1,3 +1,5 @@
 /.idea
 /core/components/ms2extend/ms2/**/*.*
 !/core/components/ms2extend/ms2/**/*.example
+/assets/components/ms2extend/ms2/plugins/**/*.*
+!/assets/components/ms2extend/ms2/plugins/**/*.example

@@ -1,0 +1,32 @@
+'use strict';
+
+miniShop2.plugin.ms2extend = {
+    //Product form
+    getFields: function (config) {
+        //Default values
+        if (config.record.boolean === undefined) {
+            config.record.boolean = 1;
+        }
+
+        return {
+            boolean: {xtype: 'xcheckbox', description: '<b>[[+boolean]]</b>'},
+            select: {xtype: 'ms2extend-combo-select', description: '<b>[[+int]]</b>'},
+            decimal: {xtype: 'numberfield', decimalPrecision: 2, description: '<b>[[+decimal]]</b>'},
+            varchar: {xtype: 'textfield', description: '<b>[[+varchar]]</b>'},
+            text: {xtype: 'textarea', description: '<b>[[+text]]</b>'},
+            json: {xtype: 'ms2extend-combo-multiselect', description: '<b>[[+json]]</b>'}
+        }
+    },
+
+    //Products grid
+    getColumns: function () {
+        return {
+            boolean: {sortable: true, editor: {xtype: 'combo-boolean', name: 'boolean', renderer: 'boolean'}},
+            select: {sortable: true},
+            decimal: {sortable: true, decimalPrecision: 2, editor: {xtype: 'numberfield', name: 'decimal'}},
+            varchar: {sortable: true, editor: {xtype: 'textfield', name: 'varchar'}},
+            text: {sortable: false, editor: {xtype: 'textarea', name: 'text'}},
+            json: {sortable: false}
+        }
+    }
+};

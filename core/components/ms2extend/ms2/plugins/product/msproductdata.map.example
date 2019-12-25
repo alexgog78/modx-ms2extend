@@ -2,9 +2,52 @@
 
 return [
     'fields' => [
-
+        'boolean' => 0,
+        'int' => 0,
+        'decimal' => 0,
+        'varchar' => NULL,
+        'text' => NULL,
+        'json' => NULL,
     ],
     'fieldMeta' => [
-
+        'boolean' => [
+            'dbtype' => 'tinyint',
+            'precision' => '1',
+            'attributes' => 'unsigned',
+            'phptype' => 'boolean',
+            'null' => true,
+            'default' => 0,
+        ],
+        'int' => [
+            'dbtype' => 'int',
+            'precision' => '10',
+            'phptype' => 'integer',
+            'null' => true,
+            'default' => 0,
+        ],
+        'decimal' => [
+            'dbtype' => 'decimal',
+            'precision' => '12,2',
+            'phptype' => 'float',
+            'null' => true,
+            'default' => 0,
+        ],
+        'varchar' => [
+            'dbtype' => 'varchar',
+            'precision' => '255',
+            'phptype' => 'string',
+            'null' => true,
+            'default' => NULL,
+        ],
+        'text' => [
+            'dbtype' => 'text',
+            'phptype' => 'string',
+            'null' => true,
+        ],
+        'json' => [
+            'dbtype' => 'text',
+            'phptype' => 'json',
+            'null' => true,
+        ],
     ],
 ];
