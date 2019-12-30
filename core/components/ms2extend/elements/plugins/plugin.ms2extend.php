@@ -23,13 +23,33 @@ switch ($modxEvent) {
             if (!$ms2Extend->mgrProduct) {
                 return;
             }
-            $ms2Extend->mgrProduct->getProductLayout($controller);
+            $ms2Extend->mgrProduct->getLayout($controller);
+        }
+        if (in_array($page, [
+            'category_create',
+            'category_update',
+        ])) {
+            if (!$ms2Extend->mgrCategory) {
+                return;
+            }
+            $ms2Extend->mgrCategory->getLayout($controller);
+        }
+        if (in_array($page, [
+            'settings',
+        ])) {
+            if (!$ms2Extend->mgrSettings) {
+                return;
+            }
+            $ms2Extend->mgrSettings->getLayout($controller);
         }
         break;
     case 'ms2extOnGetProductLayout':
+    case 'ms2extOnGetCategoryLayout':
+    case 'ms2extOnGetSettingsLayout':
         /** @var modManagerController $controller */
         break;
     case 'ms2extOnGetProductTabs':
+    case 'ms2extOnGetCategoryTabs':
         /** @var $resource */
         break;
 }

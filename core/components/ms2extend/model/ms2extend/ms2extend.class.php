@@ -9,13 +9,23 @@ class ms2Extend extends abstractModule
     /** @var array */
     public $handlers = [
         'mgr' => [
-            'mgrProduct' => 'ms2ExtendMgrProduct'
+            'mgrCategory' => 'ms2ExtendMgrCategory',
+            'mgrProduct' => 'ms2ExtendMgrProduct',
+            'mgrSettings' => 'ms2ExtendMgrSettings',
         ],
         'default' => [],
     ];
 
     /** @var string|null */
     protected $tablePrefix = 'ms2extend_';
+
+    public function __construct(modX &$modx, array $config = [])
+    {
+        parent::__construct($modx, $config);
+        $this->config['ms2JsUrl'] = $this->config['assetsUrl'] . 'ms2/js/';
+        $this->config['ms2ConnectorUrl'] = $this->config['assetsUrl'] . 'ms2/connector.php';
+        $this->config['ms2ProcessorsPath'] = $this->config['basePath'] . 'ms2/processors/';
+    }
 
     /**
      * @param modManagerController $controller

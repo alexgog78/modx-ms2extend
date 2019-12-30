@@ -1,9 +1,9 @@
 <?php
 
-$xpdo_meta_map['ms2extendProductTab'] = [
+$xpdo_meta_map['ms2extendSettingsTab'] = [
     'package' => 'ms2extend',
     'version' => '1.0',
-    'table' => 'product_tabs',
+    'table' => 'settings_tabs',
     'extends' => 'xPDOSimpleObject',
     'tableMeta' => [
         'engine' => 'MyISAM',
@@ -11,7 +11,6 @@ $xpdo_meta_map['ms2extendProductTab'] = [
     'fields' => [
         'name' => NULL,
         'description' => NULL,
-        'fields' => NULL,
         'xtypes' => NULL,
         'menuindex' => 0,
         'is_active' => 1,
@@ -26,11 +25,6 @@ $xpdo_meta_map['ms2extendProductTab'] = [
         'description' => [
             'dbtype' => 'text',
             'phptype' => 'string',
-            'null' => true,
-        ],
-        'fields' => [
-            'dbtype' => 'text',
-            'phptype' => 'json',
             'null' => true,
         ],
         'xtypes' => [

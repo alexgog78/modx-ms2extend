@@ -1,20 +1,19 @@
 'use strict';
 
-ms2Extend.window.productTab = function (config) {
+ms2Extend.window.settingsTab = function (config) {
     config = config || {};
     if (!config.id) {
-        config.id = 'ms2extend-window-producttab';
+        config.id = 'ms2extend-window-settingstab';
     }
     Ext.applyIf(config, {
         url: ms2Extend.config.connectorUrl
     });
-    ms2Extend.window.productTab.superclass.constructor.call(this, config);
+    ms2Extend.window.settingsTab.superclass.constructor.call(this, config);
 };
-Ext.extend(ms2Extend.window.productTab, ms2Extend.window.abstract, {
+Ext.extend(ms2Extend.window.settingsTab, ms2Extend.window.abstract, {
     formInputs: {
         'id': {xtype: 'hidden'},
         'name': {xtype: 'textfield', fieldLabel: _('ms2extend.field.name')},
-        'fields': {xtype: 'ms2extend-combo-multiselect-field', fieldLabel: _('ms2extend.field.fields')},
         'xtypes': {xtype: 'ms2extend-combo-multiselect-xtype', fieldLabel: _('ms2extend.field.xtypes')},
         'is_active': {xtype: 'combo-boolean', fieldLabel: _('ms2extend.field.active')},
         'description': {xtype: 'textarea', fieldLabel: _('ms2extend.field.description')}
@@ -24,4 +23,4 @@ Ext.extend(ms2Extend.window.productTab, ms2Extend.window.abstract, {
         is_active: 1
     },
 });
-Ext.reg('ms2extend-window-producttab', ms2Extend.window.productTab);
+Ext.reg('ms2extend-window-settingstab', ms2Extend.window.settingsTab);
