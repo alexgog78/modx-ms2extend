@@ -41,6 +41,9 @@ Ext.extend(ms2Extend.extend.product, Ext.Component, {
             var description = ms2Extend.function.getPanelDescription(tab.description);
             var fields = this.renderFields(tab.fields);
             var xtypes = this.renderXtypes(tab.xtypes);
+            if (!fields.length && !xtypes.length) {
+                return true;
+            }
             this.tabs.push({
                 title: tab.name,
                 items: [
