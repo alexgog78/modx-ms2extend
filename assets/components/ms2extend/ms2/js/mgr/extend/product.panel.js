@@ -1,31 +1,81 @@
 'use strict';
 
-Ext.namespace('ms2Extend.extend.product');
+Ext.namespace('ms2Extend.extend');
 
 Ext.ComponentMgr.onAvailable('minishop2-product-tabs', function () {
     this.on('beforerender', function () {
-        ms2Extend.extend.product.initComponent(this);
+        var resourcePanel = Ext.getCmp('modx-panel-resource');
+        var productFields = resourcePanel.getAllProductFields(resourcePanel);
+        var activeFields = resourcePanel.active_fields;
+        new ms2Extend.extend.product({
+            panel: this,
+            recordId: ms2Extend.config.recordId,
+            tabsData: ms2Extend.config.tabs,
+            resourcePanel: resourcePanel,
+            productFields: productFields,
+            activeFields: activeFields
+        });
     });
 });
 
-ms2Extend.extend.product = {
-    recordId: ms2Extend.config.recordId,
-    tabs: ms2Extend.config.productTabs,
+ms2Extend.extend.product = function (config) {
+    config = config || {};
+    ms2Extend.extend.product.superclass.constructor.call(this, config);
+};
+Ext.extend(ms2Extend.extend.product, Ext.Component, {
+    panel: {},
+    recordId: null,
+    tabsData: [],
+    resourcePanel: {},
+    productFields: {},
+    activeFields: [],
+    tabs: [],
 
-    initComponent: function(panel) {
-        Ext.each(this.tabs, function(tab) {
-            console.log(tab);
-            /*var description = ms2Extend.function.getPanelDescription(tab.description);
+    initComponent: function() {
+        this.getTabs();
+        this.updatePanel();
+    },
+
+    getTabs: function () {
+        Ext.each(this.tabsData, function(tab) {
+            var description = ms2Extend.function.getPanelDescription(tab.description);
+            var fields = this.renderFields(tab.fields);
             var xtypes = this.renderXtypes(tab.xtypes);
-            panel.add({
+            this.tabs.push({
                 title: tab.name,
-                layout: 'anchor',
                 items: [
                     description,
+                    {
+                        layout: 'form',
+                        labelAlign: 'top',
+                        //bodyCssClass: 'main-wrapper',
+                        items: fields,
+                    },
                     xtypes,
                 ]
-            });*/
+            });
         }, this);
+    },
+
+    renderFields: function (fields) {
+        var form = [];
+        Ext.each(fields, function(field) {
+            if (!field) {
+                return true;
+            }
+            var fieldConfig = this.productFields[field];
+            if (!fieldConfig || this.activeFields.indexOf(field) !== -1) {
+                return true;
+            }
+            this.activeFields.push(field);
+            var fieldXtype = miniShop2.utils.getExtField(this.resourcePanel, field, fieldConfig);
+
+            Ext.apply(fieldXtype, {
+                anchor: '33%'
+            });
+            form.push(fieldXtype);
+        }, this);
+        return form;
     },
 
     renderXtypes: function (xtypes) {
@@ -34,11 +84,26 @@ ms2Extend.extend.product = {
             if (!xtype) {
                 return true;
             }
-            panel.push({
+            var html = {
                 xtype: xtype,
+                recordId: this.recordId,
                 cls: 'main-wrapper'
-            });
+            };
+            if (!this.recordId) {
+                html = {xtype: 'ms2extend-notice-undefined'};
+            }
+            panel.push(html);
         }, this);
         return panel;
+    },
+
+    updatePanel: function () {
+        if (!this.tabs.length) {
+            return;
+        }
+        this.panel.add({
+            title: _('ms2extend.tab.additional_properties'),
+            items: ms2Extend.function.getVerticalTabs(this.tabs)
+        });
     }
-};
+});

@@ -1,6 +1,6 @@
 'use strict';
 
-miniShop2.plugin.ms2extend = {
+miniShop2.plugin.ms2Extend = {
     //Product form
     getFields: function (config) {
         //Default values

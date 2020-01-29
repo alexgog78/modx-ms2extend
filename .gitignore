@@ -3,3 +3,4 @@
 !/core/components/ms2extend/ms2/**/*.example
 /assets/components/ms2extend/ms2/plugins/**/*.*
 !/assets/components/ms2extend/ms2/plugins/**/*.example
+/assets/components/ms2extend/ms2/js/mgr/combo/**

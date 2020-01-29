@@ -1,7 +1,7 @@
 <?php
 
-if (!class_exists('amObjectGetListProcessor')) {
-    require_once MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/object/getlist.class.php';
+if (!$this->loadClass('getlist', MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/object/', true, true)) {
+    return false;
 }
 
 class ms2extendProductTabGetListProcessor extends amObjectGetListProcessor

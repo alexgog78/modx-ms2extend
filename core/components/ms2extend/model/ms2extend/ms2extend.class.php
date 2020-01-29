@@ -6,41 +6,29 @@ if (!class_exists('abstractModule')) {
 
 class ms2Extend extends abstractModule
 {
-    /** @var array */
-    public $handlers = [
-        'mgr' => [
-            'mgrCategory' => 'ms2ExtendMgrCategory',
-            'mgrProduct' => 'ms2ExtendMgrProduct',
-            'mgrSettings' => 'ms2ExtendMgrSettings',
-        ],
-        'default' => [],
-    ];
-
-    /** @var string|null */
+    /** @var string */
     protected $tablePrefix = 'ms2extend_';
 
-    public function __construct(modX &$modx, array $config = [])
-    {
-        parent::__construct($modx, $config);
-        $this->config['ms2JsUrl'] = $this->config['assetsUrl'] . 'ms2/js/';
-        $this->config['ms2ConnectorUrl'] = $this->config['assetsUrl'] . 'ms2/connector.php';
-        $this->config['ms2ProcessorsPath'] = $this->config['basePath'] . 'ms2/processors/';
-    }
+    /** @var array */
+    protected $handlers = [
+        'default' => [],
+        'mgr' => [
+            'Base',
+            'MsProduct',
+            'MsCategory',
+            'MsSettings',
+        ],
+        'web' => [],
+    ];
 
     /**
-     * @param modManagerController $controller
-     * @return bool
+     * @param array $config
+     * @return array
      */
-    public function addBackendAssets(modManagerController $controller)
+    protected function getConfig($config = [])
     {
-        parent::addBackendAssets($controller);
-        $controller->addCss($this->config['cssUrl'] . 'mgr/default.css');
-        $controller->addJavascript($this->config['jsUrl'] . 'mgr/' . $this->objectType . '.js');
-        $controller->addJavascript($this->config['jsUrl'] . 'mgr/combo/field.multiselect.js');
-        $controller->addJavascript($this->config['jsUrl'] . 'mgr/combo/xtype.multiselect.js');
-        $controller->addJavascript($this->config['jsUrl'] . 'mgr/combo/browser.js');
-        $controller->addJavascript($this->config['jsUrl'] . 'mgr/utils/notice.indevelopment.js');
-        $controller->addJavascript($this->config['jsUrl'] . 'mgr/utils/notice.undefined.js');
-        return true;
+        $config = parent::getConfig($config);
+        $config['ms2JsUrl'] = $config['assetsUrl'] . 'ms2/js/';
+        return $config;
     }
 }

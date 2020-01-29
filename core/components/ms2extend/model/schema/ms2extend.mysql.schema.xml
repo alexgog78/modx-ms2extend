@@ -6,7 +6,7 @@
         <field key="fields" dbtype="text" phptype="json" null="true"/>
         <field key="xtypes" dbtype="text" phptype="json" null="true"/>
         <field key="menuindex" dbtype="int" precision="10" attributes="unsigned" phptype="integer" default="0"/>
-        <field key="is_active" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="1"/>
+        <field key="is_active" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="0"/>
         <!--Indexes-->
         <index alias="menuindex" name="menuindex" primary="false" unique="false" type="BTREE">
             <column key="menuindex" length="" collation="A" null="false"/>
@@ -14,6 +14,11 @@
         <index alias="is_active" name="is_active" primary="false" unique="false" type="BTREE">
             <column key="is_active" length="" collation="A" null="false"/>
         </index>
+        <!--Validation-->
+        <validation>
+            <rule field="name" name="preventBlank" type="xPDOValidationRule" rule="xPDOMinLengthValidationRule" value="1" message="field_required"/>
+            <rule field="name" name="unique" type="xPDOValidationRule" rule="validation.ms2ExtendValidatorUnique" excludeFields="" message="ms2extend.err_ae"/>
+        </validation>
     </object>
 
     <object class="ms2extendCategoryTab" table="category_tabs" extends="xPDOSimpleObject">
@@ -21,7 +26,7 @@
         <field key="description" dbtype="text" phptype="string" null="true"/>
         <field key="xtypes" dbtype="text" phptype="json" null="true"/>
         <field key="menuindex" dbtype="int" precision="10" attributes="unsigned" phptype="integer" default="0"/>
-        <field key="is_active" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="1"/>
+        <field key="is_active" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="0"/>
         <!--Indexes-->
         <index alias="menuindex" name="menuindex" primary="false" unique="false" type="BTREE">
             <column key="menuindex" length="" collation="A" null="false"/>
@@ -29,6 +34,11 @@
         <index alias="is_active" name="is_active" primary="false" unique="false" type="BTREE">
             <column key="is_active" length="" collation="A" null="false"/>
         </index>
+        <!--Validation-->
+        <validation>
+            <rule field="name" name="preventBlank" type="xPDOValidationRule" rule="xPDOMinLengthValidationRule" value="1" message="field_required"/>
+            <rule field="name" name="unique" type="xPDOValidationRule" rule="validation.ms2ExtendValidatorUnique" excludeFields="" message="ms2extend.err_ae"/>
+        </validation>
     </object>
 
     <object class="ms2extendSettingsTab" table="settings_tabs" extends="xPDOSimpleObject">
@@ -36,7 +46,7 @@
         <field key="description" dbtype="text" phptype="string" null="true"/>
         <field key="xtypes" dbtype="text" phptype="json" null="true"/>
         <field key="menuindex" dbtype="int" precision="10" attributes="unsigned" phptype="integer" default="0"/>
-        <field key="is_active" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="1"/>
+        <field key="is_active" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="0"/>
         <!--Indexes-->
         <index alias="menuindex" name="menuindex" primary="false" unique="false" type="BTREE">
             <column key="menuindex" length="" collation="A" null="false"/>
@@ -44,5 +54,10 @@
         <index alias="is_active" name="is_active" primary="false" unique="false" type="BTREE">
             <column key="is_active" length="" collation="A" null="false"/>
         </index>
+        <!--Validation-->
+        <validation>
+            <rule field="name" name="preventBlank" type="xPDOValidationRule" rule="xPDOMinLengthValidationRule" value="1" message="field_required"/>
+            <rule field="name" name="unique" type="xPDOValidationRule" rule="validation.ms2ExtendValidatorUnique" excludeFields="" message="ms2extend.err_ae"/>
+        </validation>
     </object>
 </model>

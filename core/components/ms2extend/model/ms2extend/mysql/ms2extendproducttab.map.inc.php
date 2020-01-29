@@ -14,7 +14,7 @@ $xpdo_meta_map['ms2extendProductTab'] = [
         'fields' => NULL,
         'xtypes' => NULL,
         'menuindex' => 0,
-        'is_active' => 1,
+        'is_active' => 0,
     ],
     'fieldMeta' => [
         'name' => [
@@ -51,7 +51,7 @@ $xpdo_meta_map['ms2extendProductTab'] = [
             'attributes' => 'unsigned',
             'phptype' => 'boolean',
             'null' => false,
-            'default' => 1,
+            'default' => 0,
         ],
     ],
     'indexes' => [
@@ -78,6 +78,24 @@ $xpdo_meta_map['ms2extendProductTab'] = [
                     'length' => '',
                     'collation' => 'A',
                     'null' => false,
+                ],
+            ],
+        ],
+    ],
+    'validation' => [
+        'rules' => [
+            'name' => [
+                'preventBlank' => [
+                    'type' => 'xPDOValidationRule',
+                    'rule' => 'xPDOMinLengthValidationRule',
+                    'value' => '1',
+                    'message' => 'field_required',
+                ],
+                'unique' => [
+                    'type' => 'xPDOValidationRule',
+                    'rule' => 'validation.ms2ExtendValidatorUnique',
+                    'excludeFields' => '',
+                    'message' => 'ms2extend.err_ae',
                 ],
             ],
         ],

@@ -1,24 +1,15 @@
 <?php
 
-if (!class_exists('amSimpleObject')) {
-    require_once MODX_CORE_PATH . 'components/abstractmodule/model/abstractmodule/amsimpleobject.class.php';
+if (!$this->loadClass('amsimpleobject', MODX_CORE_PATH . 'components/abstractmodule/model/abstractmodule/', true, true)) {
+    return false;
 }
 
 class ms2extendSettingsTab extends amSimpleObject
 {
-    const BOOLEAN_FIELDS = [
+    /** @var array */
+    protected $booleanFields = [
         'is_active',
     ];
-
-    const REQUIRED_FIELDS = [
-        'name',
-    ];
-
-    const UNIQUE_FIELDS = [
-        'name',
-    ];
-
-    const UNIQUE_FIELDS_CHECK_BY_CONDITIONS = [];
 
     /**
      * @param xPDOQuery|null $query

@@ -4,20 +4,24 @@ require_once dirname(__FILE__) . '/config.inc.php';
 
 $plugins = [
     [
-        'ms2extendProductGeneral',
+        'ms2ExtendProductGeneral',
         '{core_path}components/' . PKG_NAME_LOWER . '/ms2/plugins/product/general/index.php',
     ],
     [
-        'ms2extendProductFrontDoors',
+        'ms2ExtendProductFrontDoors',
         '{core_path}components/' . PKG_NAME_LOWER . '/ms2/plugins/product/frontdoors/index.php',
     ],
     [
-        'ms2extendProductInteriorDoors',
+        'ms2ExtendProductInteriorDoors',
         '{core_path}components/' . PKG_NAME_LOWER . '/ms2/plugins/product/interiordoors/index.php',
     ],
     [
-        'ms2extendProductFurniture',
+        'ms2ExtendProductFurniture',
         '{core_path}components/' . PKG_NAME_LOWER . '/ms2/plugins/product/furniture/index.php',
+    ],
+    [
+        'ms2ExtendProductEstet',
+        '{core_path}components/' . PKG_NAME_LOWER . '/ms2/plugins/product/estet/index.php',
     ],
 ];
 
