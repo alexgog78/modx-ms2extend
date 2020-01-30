@@ -1,10 +1,10 @@
 <?php
 
-if (!$this->modx->loadClass('manager', MODX_CORE_PATH . 'components/abstractmodule/controllers/mgr/', true, true)) {
+if (!$this->modx->loadClass('abstractManagerController', MODX_CORE_PATH . 'components/abstractmodule/controllers/mgr/', true, true)) {
     return false;
 }
 
-class ms2ExtendMgrTabsManagerController extends amManagerController
+class ms2ExtendMgrTabsManagerController extends abstractManagerController
 {
     /**
      * @var array

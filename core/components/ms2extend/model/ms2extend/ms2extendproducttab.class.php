@@ -1,10 +1,10 @@
 <?php
 
-if (!$this->loadClass('amsimpleobject', MODX_CORE_PATH . 'components/abstractmodule/model/abstractmodule/', true, true)) {
+if (!$this->loadClass('abstractSimpleObject', MODX_CORE_PATH . 'components/abstractmodule/model/abstractmodule/', true, true)) {
     return false;
 }
 
-class ms2extendProductTab extends amSimpleObject
+class ms2extendProductTab extends abstractSimpleObject
 {
     /** @var array */
     protected $booleanFields = [

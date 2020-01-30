@@ -1,7 +1,7 @@
 <?php
 
 if (!class_exists('ms2ExtendMgrMsHandler')) {
-    require_once dirname(__FILE__) . '/ms.class.php';
+    require_once dirname(__FILE__) . '/ms2extendmgrmshandler.class.php';
 }
 
 class ms2ExtendMgrMsCategoryHandler extends ms2ExtendMgrMsHandler

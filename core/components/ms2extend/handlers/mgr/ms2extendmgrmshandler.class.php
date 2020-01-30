@@ -1,7 +1,7 @@
 <?php
 
 if (!class_exists('ms2ExtendMgrBaseHandler')) {
-    require_once dirname(__FILE__) . '/base.class.php';
+    require_once dirname(__FILE__) . '/ms2extendmgrbasehandler.class.php';
 }
 
 abstract class ms2ExtendMgrMsHandler extends ms2ExtendMgrBaseHandler

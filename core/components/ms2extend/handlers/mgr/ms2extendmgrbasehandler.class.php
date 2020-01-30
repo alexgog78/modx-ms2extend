@@ -1,10 +1,6 @@
 <?php
 
-if (!class_exists('amMgrHandler')) {
-    require_once MODX_CORE_PATH . 'components/abstractmodule/handlers/mgr.class.php';
-}
-
-class ms2ExtendMgrBaseHandler extends amMgrHandler
+class ms2ExtendMgrBaseHandler extends abstractMgrHandler
 {
     /**
      * @param modManagerController $controller
