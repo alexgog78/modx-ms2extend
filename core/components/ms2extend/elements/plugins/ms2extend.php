@@ -1,5 +1,6 @@
 <?php
 
+/** @noinspection PhpUndefinedVariableInspection */
 /** @var modX $modx */
 
 /** @var ms2Extend $ms2Extend */

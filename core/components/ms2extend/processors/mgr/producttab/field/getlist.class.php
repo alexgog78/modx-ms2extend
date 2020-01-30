@@ -42,7 +42,7 @@ class ms2extendProductTabFieldGetListProcessor extends modObjectProcessor
     }
 
     /**
-     * @return bool
+     * @return array|bool
      */
     private function filterQuery()
     {
@@ -55,6 +55,7 @@ class ms2extendProductTabFieldGetListProcessor extends modObjectProcessor
             }
             return true;
         });
+        return $this->fields;
     }
 
     /**

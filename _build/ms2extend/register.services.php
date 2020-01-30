@@ -46,6 +46,8 @@ class registerServices
     /**
      * registerServices constructor.
      * @param modX $modx
+     * @param array $plugins
+     * @param array $services
      */
     public function __construct(modX &$modx, $plugins = [], $services = [])
     {
