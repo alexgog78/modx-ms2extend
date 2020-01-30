@@ -33,13 +33,8 @@ class ms2ExtendMgrTabsManagerController extends abstractManagerController
 
     protected function getService()
     {
-        $this->module = $this->modx->getService(
-            'ms2extend',
-            'ms2Extend',
-            MODX_CORE_PATH . 'components/ms2extend/model/ms2extend/',
-            [
-                'ctx' => $this->modx->context->key
-            ]
-        );
+        $this->module = $this->modx->getService('ms2extend', 'ms2Extend', MODX_CORE_PATH . 'components/ms2extend/model/ms2extend/', [
+            'ctx' => $this->modx->context->key,
+        ]);
     }
 }
