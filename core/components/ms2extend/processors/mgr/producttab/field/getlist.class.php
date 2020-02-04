@@ -63,6 +63,7 @@ class ms2extendProductTabFieldGetListProcessor extends modObjectProcessor
      */
     private function prepareRows()
     {
+        $values = [];
         foreach ($this->fields as $key => $value) {
             $values[] = ['value' => $value];
         }
