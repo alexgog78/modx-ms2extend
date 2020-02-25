@@ -1,8 +1,6 @@
 <?php
 
-if (!$this->loadClass('abstractCommand', MODX_BASE_PATH . '_build/abstractmodule/', true, true)) {
-    return false;
-}
+require_once dirname(__FILE__) . '/config.inc.php';
 
 class regenerateThumbnails extends abstractCommand
 {
@@ -24,13 +22,13 @@ class regenerateThumbnails extends abstractCommand
      */
     public function __construct(modX &$modx, $config = [])
     {
+        parent::__construct($modx, $config);
         if ($config[0]) {
             $this->limit = $config[0];
         }
         if ($config[1]) {
             $this->offset = $config[1];
         }
-        parent::__construct($modx, $config);
     }
 
     public function run()
