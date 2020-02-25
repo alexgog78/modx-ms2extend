@@ -1,5 +1,7 @@
 <?php
 
+$_lang[$prefix . '.section.fields'] = 'Дополнительные поля miniShop2';
+$_lang[$prefix . '.section.fields.management'] = 'Создание дополнительных полей объектов miniShop2';
 $_lang[$prefix . '.section.tabs'] = 'Дополнительные вкладки miniShop2';
 $_lang[$prefix . '.section.tabs.management'] = 'Создание дополнительных вкладок в карточке товарана, категории и настройках miniShop2';
 

@@ -2,6 +2,18 @@
 
 require_once dirname(__FILE__) . '/config.inc.php';
 
+$basePath = dirname(dirname(dirname(__FILE__)));
+
+/** @noinspection PhpIncludeInspection */
+require_once $basePath . '/public_html/config.core.php';
+/** @noinspection PhpIncludeInspection */
+require_once MODX_CORE_PATH . 'model/modx/modx.class.php';
+
+$modx = new modX();
+$modx->initialize('mgr');
+$modx->setLogLevel(modX::LOG_LEVEL_INFO);
+$modx->setLogTarget('ECHO');
+
 $plugins = [
     [
         'ms2ExtendProductGeneral',
@@ -26,7 +38,16 @@ $plugins = [
 ];
 
 $services = [
-
+    [
+        'cart',
+        'ms2extendCartHandler',
+        '{core_path}components/' . PKG_NAME_LOWER . '/ms2/handlers/cart/ms2extendcarthandler.class.php',
+    ],
+    [
+        'order',
+        'ms2extendOrderHandler',
+        '{core_path}components/' . PKG_NAME_LOWER . '/ms2/handlers/order/ms2extendorderhandler.class.php',
+    ]
 ];
 
 class registerServices
@@ -61,7 +82,7 @@ class registerServices
 
     public function process()
     {
-        $this->addPlugins();
+        //$this->addPlugins();
         $this->addServices();
     }
 
