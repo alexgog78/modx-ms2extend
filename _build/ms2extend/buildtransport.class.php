@@ -2,12 +2,20 @@
 
 require_once dirname(__FILE__) . '/config.inc.php';
 
-class BuildTransport extends abstractCommand
+class BuildTransport extends abstractBuildTransport
 {
-    public function run()
-    {
-        // TODO: Implement run() method.
+    /** @var bool */
+    protected $namespace = true;
 
-        $this->log(111);
+    /** @var bool */
+    protected $coreFiles = true;
+
+    /** @var bool */
+    protected $assetsFiles = true;
+
+    protected function getData()
+    {
+        $this->menus = include 'data/transport.menus.php';
+        $this->events = include 'data/transport.events.php';
     }
 }
