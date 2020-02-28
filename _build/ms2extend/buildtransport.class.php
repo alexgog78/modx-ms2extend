@@ -13,9 +13,18 @@ class BuildTransport extends abstractBuildTransport
     /** @var bool */
     protected $assetsFiles = true;
 
-    protected function getData()
+    public function __construct(modX &$modx, $config = [])
     {
-        $this->menus = include 'data/transport.menus.php';
-        $this->events = include 'data/transport.events.php';
+        $this->dataFolder = dirname(__FILE__) . '/data/';
+        $this->resolversFolder = dirname(__FILE__) . '/resolvers/';
+        parent::__construct($modx, $config);
     }
+
+    //protected $menus = $menus;
+
+    /*protected function getData()
+    {
+        //$this->menus = include 'data/transport.menus.php';
+        $this->events = include 'data/transport.events.php';
+    }*/
 }
