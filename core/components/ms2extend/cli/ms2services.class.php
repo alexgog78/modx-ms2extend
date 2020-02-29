@@ -1,15 +1,17 @@
 <?php
 
+//TODO
+
 require_once dirname(__FILE__) . '/config.inc.php';
 
 //TODO JSON data
-class ms2Plugins extends abstractCommand
+class ms2Services extends abstractCommand
 {
     /** @var miniShop2 */
     private $ms2;
 
     /**
-     * ms2Plugins constructor.
+     * ms2Services constructor.
      * @param modX $modx
      * @param array $config
      */
@@ -25,9 +27,9 @@ class ms2Plugins extends abstractCommand
 
     public function run()
     {
-        foreach (MS2_PLUGINS as $service) {
-            $this->ms2->addPlugin($service['name'], $service['path']);
-            $this->log('Success: addPlugin ' . $service['name'] . '(' . $service['path'] . ')');
+        foreach (MS2_SERVICES as $service) {
+            $this->ms2->addService($service['type'], $service['name'], $service['path']);
+            $this->log('Success: addService ' . $service['type'] . ' => ' . $service['name'] . '(' . $service['path'] . ')');
         }
     }
 }

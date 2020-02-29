@@ -1,11 +1,9 @@
 <?php
 
 $xpdo_meta_map = [
-    'xPDOSimpleObject' => [
+    'abstractSimpleObject' => [
         0 => 'ms2extendProductTab',
         1 => 'ms2extendCategoryTab',
-        2 => 'ms2extendSettingTab',
+        2 => 'ms2extendSettingsTab',
     ],
 ];
-
-//include_once(dirname(dirname(__DIR__)) . '/ms2/model/metadata.mysql.php');

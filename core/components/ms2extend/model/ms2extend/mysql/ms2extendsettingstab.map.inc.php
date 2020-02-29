@@ -2,9 +2,9 @@
 
 $xpdo_meta_map['ms2extendSettingsTab'] = [
     'package' => 'ms2extend',
-    'version' => '1.0',
+    'version' => '1.1',
     'table' => 'settings_tabs',
-    'extends' => 'xPDOSimpleObject',
+    'extends' => 'abstractSimpleObject',
     'tableMeta' => [
         'engine' => 'MyISAM',
     ],

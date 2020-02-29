@@ -21,7 +21,7 @@ if ($transport->xpdo) {
             }
             break;
         case xPDOTransport::ACTION_UNINSTALL:
-            $ms2Extend = $modx->getService('ms2extend', 'ms2Extend', $modx->getOption('core_path') . 'components/ms2extend/model/ms2extend/', []);
+            /*$ms2Extend = $modx->getService('ms2extend', 'ms2Extend', $modx->getOption('core_path') . 'components/ms2extend/model/ms2extend/', []);
             $manager = $modx->getManager();
             $tmp = [
                 'ms2extendProductTab',
@@ -30,7 +30,7 @@ if ($transport->xpdo) {
             ];
             foreach ($tmp as $v) {
                 $manager->removeObjectContainer($v);
-            }
+            }*/
             break;
     }
 }

@@ -1,8 +1,16 @@
 <?php
 
-require_once dirname(__FILE__) . '/config.inc.php';
+/**
+ * Set msProductFile active = 0 before running this script
+ */
 
-class regenerateThumbnails extends abstractCommand
+require_once dirname(dirname(dirname(dirname(__FILE__)))) . '/config/config.inc.php';
+
+if (!class_exists('abstractCLI')) {
+    require_once MODX_CORE_PATH . 'components/abstractmodule/cli/abstractcli.class.php';
+}
+
+class regenerateThumbnails extends abstractCLI
 {
     const CLASS_KEY = 'msProductFile';
 
@@ -17,24 +25,25 @@ class regenerateThumbnails extends abstractCommand
 
     /**
      * regenerateThumbnails constructor.
-     * @param modX $modx
      * @param array $config
      */
-    public function __construct(modX &$modx, $config = [])
+    public function __construct($config = [])
     {
-        parent::__construct($modx, $config);
-        if ($config[0]) {
+        parent::__construct($config);
+        if (isset($config[0])) {
             $this->limit = $config[0];
         }
-        if ($config[1]) {
+        if (isset($config[1])) {
             $this->offset = $config[1];
         }
+        $this->modx->getService('miniShop2');
     }
 
     public function run()
     {
         $this->collection = $this->getProductsCollection();
         foreach ($this->collection as $item) {
+            $this->log($item);
             if(!$this->deleteThumbnails($item)) {
                 continue;
             }
@@ -44,6 +53,7 @@ class regenerateThumbnails extends abstractCommand
             $item->set('active', 1);
             $item->save();
         }
+        $this->log('Finish');
     }
 
     /**
@@ -58,7 +68,7 @@ class regenerateThumbnails extends abstractCommand
         ]);
         $query->sortby('product_id', 'ASC');
         $query->limit($this->limit, $this->offset);
-        return $this->modx->getCollection(self::CLASS_KEY, $query);
+        return $this->modx->getIterator(self::CLASS_KEY, $query);
     }
 
     /**
@@ -92,3 +102,8 @@ class regenerateThumbnails extends abstractCommand
         return true;
     }
 }
+
+array_shift($argv);
+$regenerateThumbnails = new regenerateThumbnails($argv);
+$regenerateThumbnails->run();
+exit();
