@@ -1,0 +1,20 @@
+'use strict';
+
+ms2Extend.combo.multiselect = function (config) {
+    config = config || {};
+    Ext.applyIf(config, {
+        store: new Ext.data.SimpleStore({
+            id: (config.name || 'ms2extend-combo-multiselect') + '-store',
+            fields: ['value', 'title'],
+            data: [
+                [1, 'Value 1'],
+                [2, 'Value 2'],
+            ]
+        }),
+        displayField: 'title',
+        valueField: 'value'
+    });
+    ms2Extend.combo.multiselect.superclass.constructor.call(this, config);
+};
+Ext.extend(ms2Extend.combo.multiselect, ms2Extend.combo.multiSelectLocal);
+Ext.reg('ms2extend-combo-multiselect', ms2Extend.combo.multiselect);

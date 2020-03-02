@@ -1,6 +1,6 @@
 <?php
 
-class ms2ExtendMgrBaseHandler extends abstractMgrHandler
+class ms2ExtendMgrBaseHandler extends AbstractMgrHandler
 {
     /**
      * @param modManagerController $controller

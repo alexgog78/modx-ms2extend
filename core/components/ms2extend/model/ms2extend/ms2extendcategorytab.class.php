@@ -1,16 +1,11 @@
 <?php
 
-if (!$this->loadClass('abstractSimpleObject', MODX_CORE_PATH . 'components/abstractmodule/model/abstractmodule/', true, true)) {
+if (!$this->loadClass('AbstractSimpleObject', MODX_CORE_PATH . 'components/abstractmodule/model/abstractmodule/', true, true)) {
     return false;
 }
 
-class ms2extendCategoryTab extends abstractSimpleObject
+class ms2extendCategoryTab extends AbstractSimpleObject
 {
-    /** @var array */
-    protected $booleanFields = [
-        'is_active',
-    ];
-
     /**
      * @param xPDOQuery|null $query
      * @return array

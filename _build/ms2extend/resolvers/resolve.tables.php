@@ -5,32 +5,24 @@
 /** @var array $options */
 /** @var modX $modx */
 if ($transport->xpdo) {
-    $modx =& $transport->xpdo;
+    $modx = &$transport->xpdo;
+
+    $models = [
+        'ms2extendProductTab',
+        'ms2extendCategoryTab',
+        'ms2extendSettingsTab',
+    ];
+
     switch ($options[xPDOTransport::PACKAGE_ACTION]) {
         case xPDOTransport::ACTION_INSTALL:
         case xPDOTransport::ACTION_UPGRADE:
             $ms2Extend = $modx->getService('ms2extend', 'ms2Extend', $modx->getOption('core_path') . 'components/ms2extend/model/ms2extend/', []);
             $manager = $modx->getManager();
-            $tmp = [
-                'ms2extendProductTab',
-                'ms2extendCategoryTab',
-                'ms2extendSettingsTab',
-            ];
-            foreach ($tmp as $v) {
-                $manager->createObjectContainer($v);
+            foreach ($models as $model) {
+                $manager->createObjectContainer($model);
             }
             break;
         case xPDOTransport::ACTION_UNINSTALL:
-            /*$ms2Extend = $modx->getService('ms2extend', 'ms2Extend', $modx->getOption('core_path') . 'components/ms2extend/model/ms2extend/', []);
-            $manager = $modx->getManager();
-            $tmp = [
-                'ms2extendProductTab',
-                'ms2extendCategoryTab',
-                'ms2extendSettingsTab',
-            ];
-            foreach ($tmp as $v) {
-                $manager->removeObjectContainer($v);
-            }*/
             break;
     }
 }

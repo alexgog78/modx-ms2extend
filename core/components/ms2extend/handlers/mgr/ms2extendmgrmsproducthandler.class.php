@@ -16,5 +16,5 @@ class ms2ExtendMgrMsProductHandler extends ms2ExtendMgrMsHandler
     protected $eventGet = 'ms2extOnGetProductTabs';
 
     /** @var string */
-    protected $panel = 'mgr/extend/product.panel.js';
+    protected $panel = 'product.panel.js';
 }

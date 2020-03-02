@@ -1,10 +1,10 @@
 <?php
 
-if (!class_exists('abstractModule')) {
+if (!class_exists('AbstractModule')) {
     require_once MODX_CORE_PATH . 'components/abstractmodule/model/abstractmodule/abstractmodule.class.php';
 }
 
-class ms2Extend extends abstractModule
+class ms2Extend extends AbstractModule
 {
     /** @var string */
     protected $tablePrefix = 'ms2extend_';
@@ -28,7 +28,7 @@ class ms2Extend extends abstractModule
     protected function getConfig($config = [])
     {
         $config = parent::getConfig($config);
-        $config['ms2JsUrl'] = $config['assetsUrl'] . 'ms2/js/';
+        $config['ms2AssetsUrl'] = $config['assetsUrl'] . 'ms2/';
         return $config;
     }
 }

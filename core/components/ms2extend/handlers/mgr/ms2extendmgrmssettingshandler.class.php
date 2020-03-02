@@ -16,5 +16,5 @@ class ms2ExtendMgrMsSettingsHandler extends ms2ExtendMgrMsHandler
     protected $eventGet = 'ms2extOnGetSettingsTabs';
 
     /** @var string */
-    protected $panel = 'mgr/extend/settings.panel.js';
+    protected $panel = 'settings.panel.js';
 }

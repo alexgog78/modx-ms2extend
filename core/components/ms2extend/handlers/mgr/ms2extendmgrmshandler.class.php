@@ -48,7 +48,7 @@ abstract class ms2ExtendMgrMsHandler extends ms2ExtendMgrBaseHandler
         $this->module->invokeEvent($this->eventLayout, [
             'controller' => $controller,
         ]);
-        $controller->addLastJavascript($this->config['ms2JsUrl'] . $this->panel);
+        $controller->addLastJavascript($this->config['jsUrl'] . 'mgr/ms2/' . $this->panel);
     }
 
     /**

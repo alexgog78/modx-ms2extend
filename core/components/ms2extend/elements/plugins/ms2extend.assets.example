@@ -16,28 +16,22 @@ if (!($ms2Extend instanceof ms2Extend)) {
 $modxEvent = $modx->event->name;
 switch ($modxEvent) {
     case 'ms2extOnGetProductLayout':
-        /** @var modManagerController $controller */
-        $controller->addJavascript($ms2Extend->config['ms2JsUrl'] . 'example.js');
-        break;
     case 'ms2extOnGetCategoryLayout':
-        /** @var modManagerController $controller */
-        $controller->addJavascript($ms2Extend->config['ms2JsUrl'] . 'example.js');
-        break;
     case 'ms2extOnGetSettingsLayout':
         /** @var modManagerController $controller */
-        $controller->addJavascript($ms2Extend->config['ms2JsUrl'] . 'example.js');
+        $controller->addJavascript($ms2Extend->config['ms2AssetsUrl'] . 'combo/select.example');
         break;
     case 'ms2extOnGetProductTabs':
-        /** @var $resource */
-        //tabsIds
-        break;
     case 'ms2extOnGetCategoryTabs':
-        /** @var $resource */
-        //tabsIds
-        break;
     case 'ms2extOnGetSettingsTabs':
-        /** @var $resource */
-        //tabsIds
+        /** @var $record */
+        $values = &$modx->Event->returnedValues;
+        if (isset($values['tabsIds'])) {
+            $tabsIds = $values['tabsIds'];
+        }
+        $tabsIds = [1, 2, 3];
+        $values['tabsIds'] = $tabsIds;
+        $modx->event->returnedValues = $values;
         break;
 }
 return;

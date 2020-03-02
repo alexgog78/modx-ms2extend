@@ -5,7 +5,7 @@
 require_once dirname(__FILE__) . '/config.inc.php';
 
 //TODO JSON data
-class ms2Services extends abstractCommand
+class ms2Services extends AbstractCommand
 {
     /** @var miniShop2 */
     private $ms2;

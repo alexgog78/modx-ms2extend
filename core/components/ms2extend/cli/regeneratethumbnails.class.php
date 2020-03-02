@@ -6,11 +6,11 @@
 
 require_once dirname(dirname(dirname(dirname(__FILE__)))) . '/config/config.inc.php';
 
-if (!class_exists('abstractCLI')) {
+if (!class_exists('AbstractCLI')) {
     require_once MODX_CORE_PATH . 'components/abstractmodule/cli/abstractcli.class.php';
 }
 
-class regenerateThumbnails extends abstractCLI
+class regenerateThumbnails extends AbstractCLI
 {
     const CLASS_KEY = 'msProductFile';
 
@@ -44,10 +44,10 @@ class regenerateThumbnails extends abstractCLI
         $this->collection = $this->getProductsCollection();
         foreach ($this->collection as $item) {
             $this->log($item);
-            if(!$this->deleteThumbnails($item)) {
+            if (!$this->deleteThumbnails($item)) {
                 continue;
             }
-            if(!$this->generateThumbnails($item)) {
+            if (!$this->generateThumbnails($item)) {
                 continue;
             }
             $item->set('active', 1);
@@ -78,8 +78,8 @@ class regenerateThumbnails extends abstractCLI
     private function deleteThumbnails(msProductFile $image)
     {
         $thumbs = $image->getMany('Children');
-        foreach($thumbs as $thumb){
-            if(!$thumb->remove()) {
+        foreach ($thumbs as $thumb) {
+            if (!$thumb->remove()) {
                 $this->log('Error: deleting thumbnails for "' . $image->id . '"', modX::LOG_LEVEL_ERROR);
                 return false;
             }
@@ -94,7 +94,7 @@ class regenerateThumbnails extends abstractCLI
      */
     private function generateThumbnails(msProductFile $image)
     {
-        if(!$image->generateThumbnails()) {
+        if (!$image->generateThumbnails()) {
             $this->log('Error: generating thumbnails for "' . $image->id . '"', modX::LOG_LEVEL_ERROR);
             return false;
         }

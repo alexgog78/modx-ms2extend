@@ -1,10 +1,10 @@
 <?php
 
-if (!$this->loadClass('abstractObjectCreateProcessor', MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/object/', true, true)) {
+if (!$this->loadClass('AbstractObjectCreateProcessor', MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/object/', true, true)) {
     return false;
 }
 
-class ms2extendSettingsTabCreateProcessor extends abstractObjectCreateProcessor
+class ms2extendSettingsTabCreateProcessor extends AbstractObjectCreateProcessor
 {
     /** @var string */
     public $classKey = 'ms2extendSettingsTab';

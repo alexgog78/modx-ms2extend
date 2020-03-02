@@ -16,5 +16,5 @@ class ms2ExtendMgrMsCategoryHandler extends ms2ExtendMgrMsHandler
     protected $eventGet = 'ms2extOnGetCategoryTabs';
 
     /** @var string */
-    protected $panel = 'mgr/extend/category.panel.js';
+    protected $panel = 'category.panel.js';
 }
