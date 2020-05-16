@@ -10,7 +10,7 @@ if (!class_exists('AbstractCLI')) {
     require_once MODX_CORE_PATH . 'components/abstractmodule/cli/abstractcli.class.php';
 }
 
-class regenerateThumbnails extends AbstractCLI
+class GenerateThumbnails extends AbstractCLI
 {
     const CLASS_KEY = 'msProductFile';
 
@@ -19,9 +19,6 @@ class regenerateThumbnails extends AbstractCLI
 
     /** @var int */
     private $limit = 0;
-
-    /** @var array */
-    private $collection = [];
 
     /**
      * regenerateThumbnails constructor.
@@ -41,9 +38,8 @@ class regenerateThumbnails extends AbstractCLI
 
     public function run()
     {
-        $this->collection = $this->getProductsCollection();
-        foreach ($this->collection as $item) {
-            $this->log($item);
+        $collection = $this->getProductImageCollection();
+        foreach ($collection as $item) {
             if (!$this->deleteThumbnails($item)) {
                 continue;
             }
@@ -59,7 +55,7 @@ class regenerateThumbnails extends AbstractCLI
     /**
      * @return array|null
      */
-    private function getProductsCollection()
+    private function getProductImageCollection()
     {
         $query = $this->modx->newQuery(self::CLASS_KEY);
         $query->where([
@@ -104,6 +100,6 @@ class regenerateThumbnails extends AbstractCLI
 }
 
 array_shift($argv);
-$regenerateThumbnails = new regenerateThumbnails($argv);
+$regenerateThumbnails = new GenerateThumbnails($argv);
 $regenerateThumbnails->run();
 exit();
