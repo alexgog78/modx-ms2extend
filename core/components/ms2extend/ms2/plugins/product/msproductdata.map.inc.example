@@ -50,4 +50,37 @@ return [
             'null' => true,
         ],
     ],
+    'indexes' => [
+        'boolean' => [
+            'alias' => 'boolean',
+            'primary' => false,
+            'unique' => false,
+            'type' => 'BTREE',
+            'columns' => [
+                'boolean' => [
+                    'length' => '',
+                    'collation' => 'A',
+                    'null' => false,
+                ],
+            ],
+        ],
+    ],
+    'composites' => [
+        'alias_name' => [
+            'class' => 'class_name',
+            'local' => 'current_field',
+            'foreign' => 'foreign_field',
+            'cardinality' => 'many',
+            'owner' => 'local',
+        ],
+    ],
+    'aggregates' => [
+        'alias_name' => [
+            'class' => 'class_name',
+            'local' => 'current_field',
+            'foreign' => 'foreign_field',
+            'cardinality' => 'one',
+            'owner' => 'foreign',
+        ],
+    ],
 ];

@@ -10,7 +10,7 @@ if (!class_exists('AbstractCLI')) {
     require_once MODX_CORE_PATH . 'components/abstractmodule/cli/abstractcli.class.php';
 }
 
-class GenerateThumbnails extends AbstractCLI
+class ms2ExtendThumbnailsGenerate extends AbstractCLI
 {
     const CLASS_KEY = 'msProductFile';
 
@@ -19,6 +19,9 @@ class GenerateThumbnails extends AbstractCLI
 
     /** @var int */
     private $limit = 0;
+
+    /** @var minishop2 */
+    private $miniShop2;
 
     /**
      * regenerateThumbnails constructor.
@@ -33,7 +36,7 @@ class GenerateThumbnails extends AbstractCLI
         if (isset($config[1])) {
             $this->offset = $config[1];
         }
-        $this->modx->getService('miniShop2');
+        $this->miniShop2 = $this->modx->getService('miniShop2');
     }
 
     public function run()
@@ -53,7 +56,7 @@ class GenerateThumbnails extends AbstractCLI
     }
 
     /**
-     * @return array|null
+     * @return xPDOIterator
      */
     private function getProductImageCollection()
     {
@@ -100,6 +103,6 @@ class GenerateThumbnails extends AbstractCLI
 }
 
 array_shift($argv);
-$regenerateThumbnails = new GenerateThumbnails($argv);
+$regenerateThumbnails = new ms2ExtendThumbnailsGenerate($argv);
 $regenerateThumbnails->run();
 exit();

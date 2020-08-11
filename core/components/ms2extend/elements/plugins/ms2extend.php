@@ -20,20 +20,25 @@ switch ($modxEvent) {
             'product_create',
             'product_update',
         ])) {
-            $ms2Extend->mgrMsProduct->addLexicon($controller);
+            //$ms2Extend->mgrMsProduct->addLexicon($controller);
             $ms2Extend->mgrMsProduct->loadAssets($controller);
         }
         if (in_array($page, [
             'category_create',
             'category_update',
         ])) {
-            $ms2Extend->mgrMsCategory->addLexicon($controller);
+            $ms2Extend->log($page);
+            $ms2Extend->zzz;
+            $ms2Extend->mgrMsCategory->run();
             $ms2Extend->mgrMsCategory->loadAssets($controller);
+
+            //$ms2Extend->mgrMsCategory->addLexicon($controller);
+            //$ms2Extend->mgrMsCategory->loadAssets($controller);
         }
         if (in_array($page, [
             'settings',
         ])) {
-            $ms2Extend->mgrMsSettings->addLexicon($controller);
+            //$ms2Extend->mgrMsSettings->addLexicon($controller);
             $ms2Extend->mgrMsSettings->loadAssets($controller);
         }
         break;

@@ -1,6 +1,7 @@
 <?php
 
 if (!class_exists('AbstractModule')) {
+    /** @noinspection PhpIncludeInspection */
     require_once MODX_CORE_PATH . 'components/abstractmodule/model/abstractmodule/abstractmodule.class.php';
 }
 
@@ -10,7 +11,7 @@ class ms2Extend extends AbstractModule
     protected $tablePrefix = 'ms2extend_';
 
     /** @var array */
-    protected $handlers = [
+    /*protected $handlers = [
         'default' => [],
         'mgr' => [
             'Base',
@@ -19,16 +20,19 @@ class ms2Extend extends AbstractModule
             'MsSettings',
         ],
         'web' => [],
+    ];*/
+    protected $handlersMap = [
+        'mgrMsCategory' => 'mgr/mscategory',
+        'mgrMsProduct' => 'mgr/msproduct',
+        'mgrMsSettings' => 'mgr/mssettings',
     ];
 
     /**
      * @param array $config
-     * @return array
      */
-    protected function getConfig($config = [])
+    protected function setConfig($config = [])
     {
-        $config = parent::getConfig($config);
-        $config['ms2AssetsUrl'] = $config['assetsUrl'] . 'ms2/';
-        return $config;
+        parent::setConfig($config);
+        $this->config['ms2AssetsUrl'] = $this->assetsUrl . 'ms2/';
     }
 }

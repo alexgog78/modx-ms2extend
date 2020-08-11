@@ -101,6 +101,8 @@ Ext.extend(ms2Extend.extend.product, Ext.Component, {
     },
 
     updatePanel: function () {
+        console.log(this.tabsData);
+        console.log(this.tabs);
         if (!this.tabs.length) {
             return;
         }
