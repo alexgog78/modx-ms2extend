@@ -4,7 +4,7 @@ $xpdo_meta_map['ms2extendCategoryTab'] = [
     'package' => 'ms2extend',
     'version' => '1.1',
     'table' => 'category_tabs',
-    'extends' => 'AbstractSimpleObject',
+    'extends' => 'xPDOSimpleObject',
     'tableMeta' => [
         'engine' => 'MyISAM',
     ],
@@ -84,12 +84,6 @@ $xpdo_meta_map['ms2extendCategoryTab'] = [
                     'rule' => 'xPDOMinLengthValidationRule',
                     'value' => '1',
                     'message' => 'field_required',
-                ],
-                'unique' => [
-                    'type' => 'xPDOValidationRule',
-                    'rule' => 'validation.ms2ExtendValidatorUnique',
-                    'excludeFields' => '',
-                    'message' => 'ms2extend.err_ae',
                 ],
             ],
         ],

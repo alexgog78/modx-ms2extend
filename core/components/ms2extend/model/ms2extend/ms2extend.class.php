@@ -1,38 +1,69 @@
 <?php
 
-if (!class_exists('AbstractModule')) {
-    /** @noinspection PhpIncludeInspection */
-    require_once MODX_CORE_PATH . 'components/abstractmodule/model/abstractmodule/abstractmodule.class.php';
-}
+require_once dirname(dirname(__DIR__)) . '/helpers/log.trait.php';
 
-class ms2Extend extends AbstractModule
+class ms2Extend
 {
-    /** @var string */
-    protected $tablePrefix = 'ms2extend_';
+    use ms2ExtendLogHelper;
+
+    const PKG_VERSION = '1.0.1';
+    const PKG_RELEASE = 'beta';
+    const PKG_NAMESPACE = 'ms2extend';
+    const TABLE_PREFIX = 'ms2extend_';
+
+    /** @var modX */
+    public $modx;
 
     /** @var array */
-    /*protected $handlers = [
-        'default' => [],
-        'mgr' => [
-            'Base',
-            'MsProduct',
-            'MsCategory',
-            'MsSettings',
-        ],
-        'web' => [],
-    ];*/
-    protected $handlersMap = [
-        'mgrMsCategory' => 'mgr/mscategory',
-        'mgrMsProduct' => 'mgr/msproduct',
-        'mgrMsSettings' => 'mgr/mssettings',
-    ];
+    public $config = [];
+
+    /**
+     * ms2Extend constructor.
+     *
+     * @param modX $modx
+     * @param array $config
+     */
+    public function __construct(modX $modx, array $config = [])
+    {
+        $this->modx = $modx;
+        $this->config = $this->getConfig($config);
+        $this->modx->addPackage(self::PKG_NAMESPACE, $this->modelPath, self::TABLE_PREFIX);
+        $this->modx->lexicon->load(self::PKG_NAMESPACE . ':default');
+    }
+
+    /**
+     * @param $name
+     * @return mixed|null
+     */
+    public function __get($name)
+    {
+        if (isset($this->config[$name])) {
+            return $this->config[$name];
+        }
+        return null;
+    }
 
     /**
      * @param array $config
+     * @return array
      */
-    protected function setConfig($config = [])
+    protected function getConfig($config = [])
     {
-        parent::setConfig($config);
-        $this->config['ms2AssetsUrl'] = $this->assetsUrl . 'ms2/';
+        $corePath = $this->modx->getOption(self::PKG_NAMESPACE . '.core_path', $config, MODX_CORE_PATH . 'components/' . self::PKG_NAMESPACE . '/');
+        $assetsPath = $this->modx->getOption(self::PKG_NAMESPACE . '.assets_path', $config, MODX_ASSETS_PATH . 'components/' . self::PKG_NAMESPACE . '/');
+        $assetsUrl = $this->modx->getOption(self::PKG_NAMESPACE . '.assets_url', $config, MODX_ASSETS_URL . 'components/' . self::PKG_NAMESPACE . '/');
+        return array_merge([
+            'corePath' => $corePath,
+            'assetsPath' => $assetsPath,
+            'modelPath' => $corePath . 'model/',
+            'helpersPath' => $corePath . 'helpers/',
+            'processorsPath' => $corePath . 'processors/',
+
+            'assetsUrl' => $assetsUrl,
+            'jsUrl' => $assetsUrl . 'js/',
+            'cssUrl' => $assetsUrl . 'css/',
+            'connectorUrl' => $assetsUrl . 'connector.php',
+            'ms2AssetsUrl' => $assetsUrl . 'ms2/',
+        ], $config);
     }
 }
