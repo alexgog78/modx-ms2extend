@@ -6,7 +6,7 @@ $xpdo_meta_map['ms2extendSettingsTab'] = [
     'table' => 'settings_tabs',
     'extends' => 'xPDOSimpleObject',
     'tableMeta' => [
-        'engine' => 'MyISAM',
+        'engine' => 'InnoDB',
     ],
     'fields' => [
         'name' => NULL,

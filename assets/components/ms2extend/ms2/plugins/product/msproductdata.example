@@ -14,7 +14,7 @@ miniShop2.plugin.ms2Extend = {
             decimal: {xtype: 'numberfield', decimalPrecision: 2, description: '<b>[[+decimal]]</b>'},
             varchar: {xtype: 'textfield', description: '<b>[[+varchar]]</b>'},
             text: {xtype: 'textarea', description: '<b>[[+text]]</b>'},
-            json: {xtype: 'ms2extend-combo-multiselect', description: '<b>[[+json]]</b>'}
+            json: {xtype: 'ms2extend-combo-multiselect', description: '<b>[[+json]]</b>'},
         }
     },
 
@@ -26,7 +26,7 @@ miniShop2.plugin.ms2Extend = {
             decimal: {sortable: true, decimalPrecision: 2, editor: {xtype: 'numberfield', name: 'decimal'}},
             varchar: {sortable: true, editor: {xtype: 'textfield', name: 'varchar'}},
             text: {sortable: false, editor: {xtype: 'textarea', name: 'text'}},
-            json: {sortable: false}
+            json: {sortable: false},
         }
     }
 };

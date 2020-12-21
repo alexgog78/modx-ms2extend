@@ -1,10 +1,10 @@
 <?php
 
 return [
-    ['name' => 'ms2extOnGetCategoryLayout'],
-    ['name' => 'ms2extOnGetCategoryTabs'],
-    ['name' => 'ms2extOnGetProductLayout'],
-    ['name' => 'ms2extOnGetProductTabs'],
-    ['name' => 'ms2extOnGetSettingsLayout'],
-    ['name' => 'ms2extOnGetSettingsTabs'],
+    ['name' => 'ms2ExtendOnGetCategoryLayout'],
+    ['name' => 'ms2ExtendOnGetCategoryTabs'],
+    ['name' => 'ms2ExtendOnGetProductLayout'],
+    ['name' => 'ms2ExtendOnGetProductTabs'],
+    ['name' => 'ms2ExtendOnGetSettingsLayout'],
+    ['name' => 'ms2ExtendOnGetSettingsTabs'],
 ];

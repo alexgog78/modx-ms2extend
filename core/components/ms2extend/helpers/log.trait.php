@@ -1,6 +1,6 @@
 <?php
 
-trait ms2ExtendLogHelper
+trait ms2ExtendHelperLog
 {
     /**
      * @param $data
@@ -10,6 +10,9 @@ trait ms2ExtendLogHelper
     {
         if ($data instanceof xPDOObject) {
             $data = $data->toArray('', false, true, true);
+        }
+        if ($data instanceof xPDOCriteria) {
+            $data = $data->prepare()->queryString;
         }
         if (is_array($data)) {
             $data = print_r($data, true);

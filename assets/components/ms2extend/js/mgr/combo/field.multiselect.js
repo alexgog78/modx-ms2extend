@@ -8,6 +8,7 @@ ms2Extend.combo.multiSelectField = function (config) {
             url: ms2Extend.config.connectorUrl,
             baseParams: {
                 action: 'mgr/producttab/field/getlist',
+                combo: true,
             },
             fields: ['value'],
             root: 'results',
@@ -15,10 +16,7 @@ ms2Extend.combo.multiSelectField = function (config) {
             autoLoad: false,
             autoSave: false,
         }),
-        displayField: 'value',
-        valueField: 'value',
         dataIndex: 'fields_combo',
-        allowAddNewData: true
     });
     ms2Extend.combo.multiSelectField.superclass.constructor.call(this, config);
 };

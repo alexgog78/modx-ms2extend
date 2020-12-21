@@ -6,7 +6,7 @@ $xpdo_meta_map['ms2extendCategoryTab'] = [
     'table' => 'category_tabs',
     'extends' => 'xPDOSimpleObject',
     'tableMeta' => [
-        'engine' => 'MyISAM',
+        'engine' => 'InnoDB',
     ],
     'fields' => [
         'name' => NULL,
