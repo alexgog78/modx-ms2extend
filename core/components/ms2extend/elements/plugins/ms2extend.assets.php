@@ -10,15 +10,15 @@ if (!($ms2Extend instanceof ms2Extend)) {
 
 $modxEvent = $modx->event->name;
 switch ($modxEvent) {
-    case 'ms2ExtendOnGetProductLayout':
-    case 'ms2ExtendOnGetCategoryLayout':
-    case 'ms2ExtendOnGetSettingsLayout':
+    case 'ms2extendOnGetProductLayout':
+    case 'ms2extendOnGetCategoryLayout':
+    case 'ms2extendOnGetSettingsLayout':
         /** @var modManagerController $controller */
         $controller->addJavascript($ms2Extend->ms2assetsUrl . 'combo/select.example');
         break;
-    case 'ms2ExtendOnGetProductTabs':
-    case 'ms2ExtendOnGetCategoryTabs':
-    case 'ms2ExtendOnGetSettingsTabs':
+    case 'ms2extendOnGetProductTabs':
+    case 'ms2extendOnGetCategoryTabs':
+    case 'ms2extendOnGetSettingsTabs':
         /**@var $record */
         $values = &$modx->Event->returnedValues;
         $values['tabsIds'] = [

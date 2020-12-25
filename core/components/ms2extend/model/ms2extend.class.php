@@ -32,6 +32,9 @@ class ms2Extend
         $this->config = $this->getConfig($config);
         $this->modx->addPackage(self::PKG_NAMESPACE, $this->modelPath, self::TABLE_PREFIX);
         $this->modx->lexicon->load(self::PKG_NAMESPACE . ':default');
+
+        require_once __DIR__ . '/ms2extendmgr.class.php';
+        $this->mgrHandler = new ms2ExtendMgr($this);
     }
 
     /**
