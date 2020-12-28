@@ -9,7 +9,7 @@ abstract class ms2ExtendGetListProcessor extends modObjectGetListProcessor
     use ms2ExtendProcessorHelperComboQuery;
 
     /** @var string */
-    public $objectType = 'samplemodule';
+    public $objectType = 'ms2extend';
 
     /** @var string */
     public $defaultSortField = 'menuindex';

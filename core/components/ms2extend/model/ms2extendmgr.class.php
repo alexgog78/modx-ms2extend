@@ -31,26 +31,26 @@ class ms2ExtendMgr
                 $objectType = 'ms2extendProductTab';
                 $eventLayout = 'OnGetProductLayout';
                 $eventGet = 'OnGetProductTabs';
-                $controller->addLastJavascript($this->service->jsUrl . 'mgr/widgets/ms2/panel.product.js');
+                $controller->addLastJavascript($this->service->jsUrl . 'mgr/ms2/panel.product.js');
                 break;
             case 'category_create':
             case 'category_update':
                 $objectType = 'ms2extendCategoryTab';
                 $eventLayout = 'OnGetCategoryLayout';
                 $eventGet = 'OnGetCategoryTabs';
-                $controller->addLastJavascript($this->service->jsUrl . 'mgr/widgets/ms2/panel.category.js');
+                $controller->addLastJavascript($this->service->jsUrl . 'mgr/ms2/panel.category.js');
                 break;
             case 'settings':
                 $objectType = 'ms2extendSettingsTab';
                 $eventLayout = 'OnGetSettingsLayout';
                 $eventGet = 'OnGetSettingsTabs';
-                $controller->addLastJavascript($this->service->jsUrl . 'mgr/widgets/ms2/panel.settings.js');
+                $controller->addLastJavascript($this->service->jsUrl . 'mgr/ms2/panel.settings.js');
                 break;
             default:
                 return;
         }
 
-        $controller->addLexiconTopic('ms2extend:default');
+        $controller->addLexiconTopic($this->service::PKG_NAMESPACE . ':default');
         $this->addDefaultAssets($controller);
 
         $this->service->invokeEvent($eventLayout, [

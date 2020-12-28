@@ -7,11 +7,11 @@ abstract class ms2ExtendUpdateProcessor extends modObjectUpdateProcessor
     use ms2ExtendProcessorHelperSetBoolean;
 
     /** @var string */
-    public $objectType = 'samplemodule';
+    public $objectType = 'ms2extend';
 
     /** @var array */
     public $languageTopics = [
-        'samplemodule:status',
+        'ms2extend:status',
     ];
 
     /** @var object */

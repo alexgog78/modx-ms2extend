@@ -1,6 +1,8 @@
 'use strict';
 
-ms2Extend.combo.selectLocal = function (config) {
+Ext.namespace('ms2Extend.combo.selectLocal');
+
+ms2Extend.combo.selectLocal.abstract = function (config) {
     config = config || {};
     Ext.applyIf(config, {
         //Custom settings
@@ -20,6 +22,6 @@ ms2Extend.combo.selectLocal = function (config) {
     if (!config.hiddenName) {
         config.hiddenName = config.name;
     }
-    ms2Extend.combo.selectLocal.superclass.constructor.call(this, config);
+    ms2Extend.combo.selectLocal.abstract.superclass.constructor.call(this, config);
 };
-Ext.extend(ms2Extend.combo.selectLocal, MODx.combo.ComboBox);
+Ext.extend(ms2Extend.combo.selectLocal.abstract, MODx.combo.ComboBox);

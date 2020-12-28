@@ -1,13 +1,15 @@
 'use strict';
 
-ms2Extend.combo.browser = function (config) {
+Ext.namespace('ms2Extend.combo.browser');
+
+ms2Extend.combo.browser.abstract = function (config) {
     config = config || {};
     Ext.applyIf(config, {
         source: config.source || MODx.config.default_media_source
     });
-    ms2Extend.combo.browser.superclass.constructor.call(this, config);
+    ms2Extend.combo.browser.abstract.superclass.constructor.call(this, config);
 };
-Ext.extend(ms2Extend.combo.browser, MODx.combo.Browser, {
+Ext.extend(ms2Extend.combo.browser.abstract, MODx.combo.Browser, {
     onTriggerClick: function (btn) {
         if (this.disabled) {
             return false;

@@ -1,6 +1,6 @@
 'use strict';
 
-ms2Extend.combo.multiSelectField = function (config) {
+ms2Extend.combo.multiSelectRemote.field = function (config) {
     config = config || {};
     Ext.applyIf(config, {
         store: new Ext.data.JsonStore({
@@ -18,7 +18,7 @@ ms2Extend.combo.multiSelectField = function (config) {
         }),
         dataIndex: 'fields_combo',
     });
-    ms2Extend.combo.multiSelectField.superclass.constructor.call(this, config);
+    ms2Extend.combo.multiSelectRemote.field.superclass.constructor.call(this, config);
 };
-Ext.extend(ms2Extend.combo.multiSelectField, ms2Extend.combo.multiSelectRemote);
-Ext.reg('ms2extend-combo-multiselect-field', ms2Extend.combo.multiSelectField);
+Ext.extend(ms2Extend.combo.multiSelectRemote.field, ms2Extend.combo.multiSelectRemote.abstract);
+Ext.reg('ms2extend-combo-multiselect-field', ms2Extend.combo.multiSelectRemote.field);

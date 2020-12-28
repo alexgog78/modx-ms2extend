@@ -40,7 +40,7 @@ ms2Extend.grid.producttab = function (config) {
             },
             remove: {
                 action: 'mgr/producttab/remove'
-            }
+            },
         },
     });
     ms2Extend.grid.producttab.superclass.constructor.call(this, config);

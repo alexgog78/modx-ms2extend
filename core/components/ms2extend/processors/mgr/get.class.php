@@ -3,11 +3,11 @@
 abstract class ms2ExtendGetProcessor extends modObjectGetProcessor
 {
     /** @var string */
-    public $objectType = 'samplemodule';
+    public $objectType = 'ms2extend';
 
     /** @var array */
     public $languageTopics = [
-        'samplemodule:status',
+        'ms2extend:status',
     ];
 
     /** @var object */

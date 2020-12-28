@@ -68,16 +68,7 @@ Ext.extend(ms2Extend.extend.panel.settings, MODx.Panel, {
             }
             var html = {
                 xtype: xtype,
-                record_id: this.record_id,
                 cls: 'main-wrapper'
-            };
-            html = {
-                html: _('ms2extend_indevelopment'),
-                cls: 'panel-desc',
-                style: {
-                    fontSize: '170%',
-                    textAlign: 'center'
-                }
             };
             xtypes.push(html);
         }, this);

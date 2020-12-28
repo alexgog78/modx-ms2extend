@@ -20,6 +20,9 @@ class ms2Extend
     /** @var array */
     public $config = [];
 
+    /** @var ms2ExtendMgr */
+    public $mgrHandler;
+
     /**
      * ms2Extend constructor.
      *

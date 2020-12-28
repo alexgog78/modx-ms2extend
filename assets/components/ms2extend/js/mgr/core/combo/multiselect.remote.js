@@ -1,6 +1,8 @@
 'use strict';
 
-ms2Extend.combo.multiSelectRemote = function (config) {
+Ext.namespace('ms2Extend.combo.multiSelectRemote');
+
+ms2Extend.combo.multiSelectRemote.abstract = function (config) {
     config = config || {};
     Ext.applyIf(config, {
         //Custom settings
@@ -77,6 +79,6 @@ ms2Extend.combo.multiSelectRemote = function (config) {
     }
     config.name += '[]';
     config.hiddenName += '[]';
-    ms2Extend.combo.multiSelectRemote.superclass.constructor.call(this, config);
+    ms2Extend.combo.multiSelectRemote.abstract.superclass.constructor.call(this, config);
 };
-Ext.extend(ms2Extend.combo.multiSelectRemote, Ext.ux.form.SuperBoxSelect);
+Ext.extend(ms2Extend.combo.multiSelectRemote.abstract, Ext.ux.form.SuperBoxSelect);
