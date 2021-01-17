@@ -1,8 +1,9 @@
 <?php
 
-require_once dirname(__DIR__) . '/default.class.php';
+/** @noinspection PhpIncludeInspection */
+require_once MODX_CORE_PATH . 'components/abstractmodule/controllers/mgr/default.class.php';
 
-class ms2ExtendMgrTabsManagerController extends ms2ExtendMgrDefaultController
+class ms2ExtendMgrTabsManagerController extends abstractModuleMgrDefaultController
 {
     /** @var string */
     protected $pageTitle = 'ms2extend_tabs';

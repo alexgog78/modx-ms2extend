@@ -4,6 +4,9 @@ Ext.namespace('ms2Extend.extend.panel');
 
 Ext.ComponentMgr.onAvailable('minishop2-product-tabs', function () {
     this.on('beforerender', function () {
+        if (!ms2Extend.config.tabs.length) {
+            return;
+        }
         let panel = Ext.getCmp('modx-panel-resource');
         let productFields = panel.getAllProductFields(panel);
         let activeFields = panel.active_fields;
@@ -50,9 +53,6 @@ Ext.extend(ms2Extend.extend.panel.product, MODx.Panel, {
             let description = this.getDescription(tab.description);
             let fields = this.getFields(tab.fields);
             let xtypes = this.getXtypes(tab.xtypes);
-            if (!fields.length && !xtypes.length) {
-                return true;
-            }
             tabs.push({
                 title: tab.name,
                 items: [
@@ -80,9 +80,6 @@ Ext.extend(ms2Extend.extend.panel.product, MODx.Panel, {
     getFields: function (fieldsData) {
         var fields = [];
         Ext.each(fieldsData, function (field) {
-            if (!field) {
-                return true;
-            }
             var fieldConfig = this.productFields[field];
             if (!fieldConfig || this.activeFields.indexOf(field) !== -1) {
                 return true;
@@ -101,9 +98,6 @@ Ext.extend(ms2Extend.extend.panel.product, MODx.Panel, {
     getXtypes: function (xtypesData) {
         var xtypes = [];
         Ext.each(xtypesData, function (xtype) {
-            if (!xtype) {
-                return true;
-            }
             var html = {
                 xtype: xtype,
                 resource_id: this.record_id,

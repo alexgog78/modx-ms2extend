@@ -19,7 +19,7 @@ $modx->lexicon->load(PKG_NAME_LOWER . ':default');
 
 /** @var modConnectorRequest $request */
 $request = $modx->request;
-$processorsPath = $modx->getOption('processorsPath', $service->config, MODX_CORE_PATH . 'processors/');
+$processorsPath = $modx->getOption('processorsPath', $service->getConfig(), MODX_CORE_PATH . 'processors/');
 $request->handleRequest([
     'processors_path' => $processorsPath,
     'location' => '',

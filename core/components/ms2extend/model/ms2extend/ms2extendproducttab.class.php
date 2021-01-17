@@ -1,21 +1,15 @@
 <?php
 
-require_once dirname(__DIR__) . '/helpers/menuindex.trait.php';
-require_once dirname(__DIR__) . '/helpers/json.trait.php';
+$this->loadClass('ms2extendTab', dirname(__DIR__) . '/', true, true);
 
-class ms2extendProductTab extends xPDOSimpleObject
+class ms2extendProductTab extends ms2extendTab
 {
-    use ms2ExtendModelHelperMenuindex;
-    use ms2ExtendModelHelperJson;
+    /** @var string */
+    protected $eventMgrLayout = 'OnGetProductLayout';
 
-    /**
-     * @param null $cacheFlag
-     * @return bool
-     */
-    public function save($cacheFlag = null)
-    {
-        $this->setMenuindex();
-        $this->setJsonFields();
-        return parent::save($cacheFlag);
-    }
+    /** @var string */
+    protected $eventMgrGet = 'OnGetProductTabs';
+
+    /** @var string */
+    protected $mgrPanel = 'panel.product.js';
 }

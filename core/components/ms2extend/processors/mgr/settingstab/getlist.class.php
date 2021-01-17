@@ -1,9 +1,13 @@
 <?php
 
-require_once dirname(__DIR__) . '/getlist.class.php';
+/** @noinspection PhpIncludeInspection */
+require_once MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/getlist.class.php';
 
-class ms2extendSettingsTabGetListProcessor extends ms2ExtendGetListProcessor
+class ms2extendSettingsTabGetListProcessor extends abstractModuleGetListProcessor
 {
+    /** @var string */
+    public $objectType = 'ms2extend';
+
     /** @var string */
     public $classKey = 'ms2extendSettingsTab';
 

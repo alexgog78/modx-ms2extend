@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model package="ms2extend" baseClass="xPDOObject" platform="mysql" defaultEngine="InnoDB" tablePrefix="ms2extend_" phpdoc-package="ms2extend" phpdoc-subpackage="" version="1.1">
-    <object class="ms2extendProductTab" table="product_tabs" extends="xPDOSimpleObject">
+<model package="ms2extend" baseClass="abstractObject" platform="mysql" defaultEngine="InnoDB" tablePrefix="ms2extend_" phpdoc-package="ms2extend" phpdoc-subpackage="" version="1.1">
+    <object class="ms2extendProductTab" table="product_tabs" extends="ms2extendTab">
         <field key="name" dbtype="varchar" precision="255" phptype="string" null="true"/>
         <field key="description" dbtype="text" phptype="string" null="true"/>
         <field key="fields" dbtype="text" phptype="json" null="true"/>
@@ -20,7 +20,7 @@
         </validation>
     </object>
 
-    <object class="ms2extendCategoryTab" table="category_tabs" extends="xPDOSimpleObject">
+    <object class="ms2extendCategoryTab" table="category_tabs" extends="ms2extendTab">
         <field key="name" dbtype="varchar" precision="255" phptype="string" null="true"/>
         <field key="description" dbtype="text" phptype="string" null="true"/>
         <field key="xtypes" dbtype="text" phptype="json" null="true"/>
@@ -39,7 +39,7 @@
         </validation>
     </object>
 
-    <object class="ms2extendSettingsTab" table="settings_tabs" extends="xPDOSimpleObject">
+    <object class="ms2extendSettingsTab" table="settings_tabs" extends="ms2extendTab">
         <field key="name" dbtype="varchar" precision="255" phptype="string" null="true"/>
         <field key="description" dbtype="text" phptype="string" null="true"/>
         <field key="xtypes" dbtype="text" phptype="json" null="true"/>

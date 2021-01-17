@@ -1,9 +1,13 @@
 <?php
 
-require_once dirname(__DIR__) . '/getlist.class.php';
+/** @noinspection PhpIncludeInspection */
+require_once MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/getlist.class.php';
 
-class ms2extendCategoryTabGetListProcessor extends ms2ExtendGetListProcessor
+class ms2extendCategoryTabGetListProcessor extends abstractModuleGetListProcessor
 {
+    /** @var string */
+    public $objectType = 'ms2extend';
+
     /** @var string */
     public $classKey = 'ms2extendCategoryTab';
 
@@ -13,23 +17,8 @@ class ms2extendCategoryTabGetListProcessor extends ms2ExtendGetListProcessor
      */
     public function prepareRow(xPDOObject $object)
     {
-        $this->prepareFieldsCombo($object);
         $this->prepareXtypesCombo($object);
         return parent::prepareRow($object);
-    }
-
-    /**
-     * @param xPDOObject $object
-     */
-    private function prepareFieldsCombo(xPDOObject $object)
-    {
-        $tags = [];
-        foreach ($object->get('fields') ?? [] as $value) {
-            $tags[] = [
-                'value' => $value,
-            ];
-        }
-        $object->set('fields_combo', $tags);
     }
 
     /**

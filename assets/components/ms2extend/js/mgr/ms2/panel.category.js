@@ -4,6 +4,9 @@ Ext.namespace('ms2Extend.extend.panel');
 
 Ext.ComponentMgr.onAvailable('modx-resource-tabs', function () {
     this.on('beforerender', function () {
+        if (!ms2Extend.config.tabs.length) {
+            return;
+        }
         this.add({
             title: _('ms2extend_additional_properties'),
             xtype: 'ms2extend-extend-panel-category',
@@ -40,9 +43,6 @@ Ext.extend(ms2Extend.extend.panel.category, MODx.Panel, {
         Ext.each(this.tabsData, function (tab) {
             let description = this.getDescription(tab.description);
             let xtypes = this.getXtypes(tab.xtypes);
-            if (!xtypes.length) {
-                return true;
-            }
             tabs.push({
                 title: tab.name,
                 items: [
@@ -65,9 +65,6 @@ Ext.extend(ms2Extend.extend.panel.category, MODx.Panel, {
     getXtypes: function (xtypesData) {
         var xtypes = [];
         Ext.each(xtypesData, function (xtype) {
-            if (!xtype) {
-                return true;
-            }
             var html = {
                 xtype: xtype,
                 resource_id: this.record_id,

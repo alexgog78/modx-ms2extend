@@ -14,7 +14,7 @@ switch ($modxEvent) {
     case 'ms2extendOnGetCategoryLayout':
     case 'ms2extendOnGetSettingsLayout':
         /** @var modManagerController $controller */
-        $controller->addJavascript($ms2Extend->ms2assetsUrl . 'combo/select.example');
+        $controller->addJavascript($ms2Extend->ms2assetsUrl . 'combo/select.examplez');
         break;
     case 'ms2extendOnGetProductTabs':
     case 'ms2extendOnGetCategoryTabs':

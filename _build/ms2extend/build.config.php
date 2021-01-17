@@ -1,7 +1,7 @@
 <?php
 
 define('PKG_NAME', 'ms2Extend');
-define('PKG_NAME_LOWER', 'ms2extend');
+define('PKG_NAME_LOWER', strtolower(PKG_NAME));
 define('PKG_PATH', MODX_CORE_PATH . 'components/' . PKG_NAME_LOWER . '/');
 define('DB_TYPE', $modx->getOption('dbtype'));
 define('PKG_MODEL_PATH', PKG_PATH . 'model/');
