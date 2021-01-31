@@ -17,7 +17,7 @@ ms2Extend.grid.categorytab = function (config) {
             'description',
             'xtypes',
             'xtypes_combo',
-            'menuindex',
+            'sort_order',
             'is_active',
         ],
         columns: [

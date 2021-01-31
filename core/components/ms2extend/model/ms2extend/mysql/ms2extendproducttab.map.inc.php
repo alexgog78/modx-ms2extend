@@ -13,7 +13,7 @@ $xpdo_meta_map['ms2extendProductTab'] = [
         'description' => NULL,
         'fields' => NULL,
         'xtypes' => NULL,
-        'menuindex' => 0,
+        'sort_order' => 0,
         'is_active' => 0,
     ],
     'fieldMeta' => [
@@ -38,7 +38,7 @@ $xpdo_meta_map['ms2extendProductTab'] = [
             'phptype' => 'json',
             'null' => true,
         ],
-        'menuindex' => [
+        'sort_order' => [
             'dbtype' => 'int',
             'precision' => '10',
             'attributes' => 'unsigned',
@@ -55,13 +55,13 @@ $xpdo_meta_map['ms2extendProductTab'] = [
         ],
     ],
     'indexes' => [
-        'menuindex' => [
-            'alias' => 'menuindex',
+        'sort_order' => [
+            'alias' => 'sort_order',
             'primary' => false,
             'unique' => false,
             'type' => 'BTREE',
             'columns' => [
-                'menuindex' => [
+                'sort_order' => [
                     'length' => '',
                     'collation' => 'A',
                     'null' => false,

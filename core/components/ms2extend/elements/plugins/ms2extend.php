@@ -12,3 +12,4 @@ if (!($ms2Extend instanceof ms2Extend)) {
 }
 $modxEvent = $modx->event->name;
 $ms2Extend->handleEvent($modxEvent, $scriptProperties);
+return;

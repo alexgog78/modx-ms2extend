@@ -66,7 +66,7 @@ abstract class ms2extendTab extends abstractSimpleObject
         $query->where([
             'is_active' => 1,
         ]);
-        $query->sortby('menuindex', 'ASC');
+        $query->sortby('sort_order', 'ASC');
         if (!empty($ids)) {
             $query->where([
                 'id:IN' => $ids,

@@ -13,5 +13,5 @@ ms2Extend.combo.select = function (config) {
     });
     ms2Extend.combo.select.superclass.constructor.call(this, config);
 };
-Ext.extend(ms2Extend.combo.select, ms2Extend.combo.selectLocal);
+Ext.extend(ms2Extend.combo.select, ms2Extend.combo.select.local);
 Ext.reg('ms2extend-combo-select', ms2Extend.combo.select);

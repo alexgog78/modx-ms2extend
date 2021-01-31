@@ -12,5 +12,5 @@ $_lang[$prefix . 'name'] = 'Название';
 $_lang[$prefix . 'description'] = 'Описание';
 $_lang[$prefix . 'fields'] = 'Поля';
 $_lang[$prefix . 'xtypes'] = 'ExtJS';
-$_lang[$prefix . 'menuindex'] = 'Сортировка';
+$_lang[$prefix . 'sortorder'] = 'Сортировка';
 $_lang[$prefix . 'active'] = 'Активный';

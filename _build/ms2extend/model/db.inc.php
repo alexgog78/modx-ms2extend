@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @var modX $modx
+ * @var xPDOManager $manager
+ * @var xPDOGenerator $generator
+ */
+
 $service = $modx->getService(PKG_NAME_LOWER, PKG_NAME, PKG_MODEL_PATH);
 $mapFile = $service->modelPath . $service::PKG_NAMESPACE . '/metadata.' . DB_TYPE . '.php';
 

@@ -19,7 +19,7 @@ ms2Extend.grid.producttab = function (config) {
             'fields_combo',
             'xtypes',
             'xtypes_combo',
-            'menuindex',
+            'sort_order',
             'is_active',
         ],
         columns: [

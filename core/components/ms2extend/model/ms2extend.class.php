@@ -8,7 +8,6 @@ class ms2Extend extends abstractModule
     const PKG_RELEASE = 'beta';
     const PKG_NAMESPACE = 'ms2extend';
     const TABLE_PREFIX = 'ms2extend_';
-    const DEVELOPER_MODE = true;
 
     /**
      * @param array $config
