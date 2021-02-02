@@ -29,12 +29,7 @@ Ext.extend(ms2Extend.extend.panel.category, MODx.Panel, {
     record_id: null,
 
     initComponent: function () {
-        this.items = {
-            xtype: 'modx-vtabs',
-            deferredRender: false,
-            anchor: '100%',
-            items: this.getTabs(),
-        };
+        this.items = ms2Extend.component.verticalTabs(this.getTabs());
         ms2Extend.extend.panel.category.superclass.initComponent.call(this);
     },
 
@@ -55,11 +50,10 @@ Ext.extend(ms2Extend.extend.panel.category, MODx.Panel, {
     },
 
     getDescription: function (html = null) {
-        return html ? [{
-            xtype: 'modx-description',
-            itemId: '',
-            html: '<p>' + html + '</p>'
-        }, MODx.PanelSpacer] : {};
+        return html ? [
+            ms2Extend.component.panelDescription(html),
+            MODx.PanelSpacer
+        ] : {};
     },
 
     getXtypes: function (xtypesData) {
@@ -71,14 +65,7 @@ Ext.extend(ms2Extend.extend.panel.category, MODx.Panel, {
                 cls: 'main-wrapper'
             };
             if (!this.record_id) {
-                html = {
-                    html: _('ms2extend_undefined'),
-                    cls: 'panel-desc',
-                    style: {
-                        fontSize: '170%',
-                        textAlign: 'center'
-                    }
-                };
+                html = ms2Extend.component.notice(_('ms2extend_undefined'));
             }
             xtypes.push(html);
         }, this);

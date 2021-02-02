@@ -27,12 +27,7 @@ Ext.extend(ms2Extend.extend.panel.settings, MODx.Panel, {
     tabsData: [],
 
     initComponent: function () {
-        this.items = {
-            xtype: 'modx-vtabs',
-            deferredRender: false,
-            anchor: '100%',
-            items: this.getTabs(),
-        };
+        this.items = ms2Extend.component.verticalTabs(this.getTabs());
         ms2Extend.extend.panel.settings.superclass.initComponent.call(this);
     },
 
@@ -53,11 +48,10 @@ Ext.extend(ms2Extend.extend.panel.settings, MODx.Panel, {
     },
 
     getDescription: function (html = null) {
-        return html ? [{
-            xtype: 'modx-description',
-            itemId: '',
-            html: '<p>' + html + '</p>'
-        }, MODx.PanelSpacer] : {};
+        return html ? [
+            ms2Extend.component.panelDescription(html),
+            MODx.PanelSpacer
+        ] : {};
     },
 
     getXtypes: function (xtypesData) {

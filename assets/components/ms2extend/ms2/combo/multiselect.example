@@ -1,5 +1,7 @@
 'use strict';
 
+Ext.namespace('ms2Extend.combo');
+
 ms2Extend.combo.multiselect = function (config) {
     config = config || {};
     Ext.applyIf(config, {
@@ -16,5 +18,5 @@ ms2Extend.combo.multiselect = function (config) {
     });
     ms2Extend.combo.multiselect.superclass.constructor.call(this, config);
 };
-Ext.extend(ms2Extend.combo.multiselect, ms2Extend.combo.multiSelect.local);
+Ext.extend(ms2Extend.combo.multiselect, ms2Extend.combo.multiSelect.local.abstract);
 Ext.reg('ms2extend-combo-multiselect', ms2Extend.combo.multiselect);
