@@ -18,11 +18,12 @@ class ms2ExtendEventmsOnManagerCustomCssJs extends abstractModuleEvent
      * ms2ExtendEventmsOnManagerCustomCssJs constructor.
      *
      * @param ms2Extend $service
+     * @param string $eventName
      * @param array $scriptProperties
      */
-    public function __construct(ms2Extend $service, $scriptProperties = [])
+    public function _construct(ms2Extend $service, string $eventName, $scriptProperties = [])
     {
-        parent::__construct($service, $scriptProperties);
+        parent::__construct($service, $eventName, $scriptProperties);
         $this->page = $scriptProperties['page'];
         $this->controller = $scriptProperties['controller'];
     }
