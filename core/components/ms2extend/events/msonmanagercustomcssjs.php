@@ -21,14 +21,31 @@ class ms2ExtendEventmsOnManagerCustomCssJs extends abstractModuleEvent
      * @param string $eventName
      * @param array $scriptProperties
      */
-    public function _construct(ms2Extend $service, string $eventName, $scriptProperties = [])
+    public function __construct(ms2Extend $service, string $eventName, $scriptProperties = [])
     {
         parent::__construct($service, $eventName, $scriptProperties);
         $this->page = $scriptProperties['page'];
         $this->controller = $scriptProperties['controller'];
     }
 
-    public function run()
+    /**
+     * @return bool
+     */
+    protected function checkPermissions()
+    {
+        if (!in_array($this->page, [
+            'product_create',
+            'product_update',
+            'category_create',
+            'category_update',
+            'settings',
+        ])) {
+            return false;
+        }
+        return parent::checkPermissions();
+    }
+
+    protected function handleEvent()
     {
         switch ($this->page) {
             case 'product_create':
@@ -42,8 +59,6 @@ class ms2ExtendEventmsOnManagerCustomCssJs extends abstractModuleEvent
             case 'settings':
                 $this->classKey = 'ms2extendSettingsTab';
                 break;
-            default:
-                return;
         }
         $this->tabFactory = $this->modx->newObject($this->classKey);
         $this->tabFactory->extendMgrControllers($this->controller);

@@ -8,10 +8,10 @@ abstract class ms2extendTab extends abstractSimpleObject
     protected $timestamps = false;
 
     /** @var string */
-    protected $eventMgrLayout = 'OnGetProductLayout';
+    protected $eventMgrLayout;
 
     /** @var string */
-    protected $eventMgrGet = 'OnGetProductTabs';
+    protected $eventMgrGet;
 
     /** @var string */
     protected $mgrPanel;

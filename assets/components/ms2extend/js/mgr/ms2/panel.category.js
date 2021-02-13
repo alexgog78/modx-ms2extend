@@ -62,7 +62,7 @@ Ext.extend(ms2Extend.extend.panel.category, MODx.Panel, {
             var html = {
                 xtype: xtype,
                 resource_id: this.record_id,
-                cls: 'main-wrapper'
+                cls: 'main-wrapper',
             };
             if (!this.record_id) {
                 html = ms2Extend.component.notice(_('ms2extend_undefined'));
