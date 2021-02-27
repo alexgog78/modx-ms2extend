@@ -34,13 +34,11 @@ Ext.extend(ms2Extend.extend.panel.settings, MODx.Panel, {
     getTabs: function () {
         let tabs = [];
         Ext.each(this.tabsData, function (tab) {
-            let description = this.getDescription(tab.description);
-            let xtypes = this.getXtypes(tab.xtypes);
             tabs.push({
                 title: tab.name,
                 items: [
-                    description,
-                    xtypes,
+                    this.getDescription(tab.description),
+                    this.getXtypes(tab.xtypes),
                 ]
             });
         }, this);
@@ -55,13 +53,11 @@ Ext.extend(ms2Extend.extend.panel.settings, MODx.Panel, {
     },
 
     getXtypes: function (xtypesData) {
-        var xtypes = [];
+        let xtypes = [];
         Ext.each(xtypesData, function (xtype) {
-            var html = {
+            xtypes.push({
                 xtype: xtype,
-                cls: 'main-wrapper'
-            };
-            xtypes.push(html);
+            });
         }, this);
         return xtypes;
     },

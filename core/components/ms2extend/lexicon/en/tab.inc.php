@@ -2,15 +2,15 @@
 
 $prefix = 'ms2extend_tab_';
 
-$_lang[$prefix . 'list_product'] = 'Вкладки товара';
-$_lang[$prefix . 'list_product_management'] = 'Управляйте вашими дополнительными вкладками товара здесь. Вы можете изменять их двойным щелчком по необходимому полю или щелчком правой кнопки мыши по необходимому ряду.';
-$_lang[$prefix . 'list_category'] = 'Вкладки категории';
-$_lang[$prefix . 'list_category_management'] = 'Управляйте вашими дополнительными вкладками категории здесь. Вы можете изменять их двойным щелчком по необходимому полю или щелчком правой кнопки мыши по необходимому ряду.';
-$_lang[$prefix . 'list_settings'] = 'Вкладки настроек';
-$_lang[$prefix . 'list_settings_management'] = 'Управляйте вашими дополнительными вкладками настроек здесь. Вы можете изменять их двойным щелчком по необходимому полю или щелчком правой кнопки мыши по необходимому ряду.';
-$_lang[$prefix . 'name'] = 'Название';
-$_lang[$prefix . 'description'] = 'Описание';
-$_lang[$prefix . 'fields'] = 'Поля';
+$_lang[$prefix . 'list_product'] = 'Product tabs';
+$_lang[$prefix . 'list_product_management'] = 'Manage your additional product tabs here. You can change them by double-clicking on the required field or by right-clicking on the required row.';
+$_lang[$prefix . 'list_category'] = 'Category tabs';
+$_lang[$prefix . 'list_category_management'] = 'Manage your additional category tabs here. You can change them by double-clicking on the required field or by right-clicking on the required row.';
+$_lang[$prefix . 'list_settings'] = 'Settings tabs';
+$_lang[$prefix . 'list_settings_management'] = 'Manage your additional settings tabs here. You can change them by double-clicking on the required field or by right-clicking on the required row.';
+$_lang[$prefix . 'name'] = 'Name';
+$_lang[$prefix . 'description'] = 'Description';
+$_lang[$prefix . 'fields'] = 'fields';
 $_lang[$prefix . 'xtypes'] = 'ExtJS';
-$_lang[$prefix . 'sortorder'] = 'Сортировка';
-$_lang[$prefix . 'active'] = 'Активный';
+$_lang[$prefix . 'sortorder'] = 'Sort order';
+$_lang[$prefix . 'active'] = 'Active';

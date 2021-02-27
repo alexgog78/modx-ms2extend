@@ -36,13 +36,11 @@ Ext.extend(ms2Extend.extend.panel.category, MODx.Panel, {
     getTabs: function () {
         let tabs = [];
         Ext.each(this.tabsData, function (tab) {
-            let description = this.getDescription(tab.description);
-            let xtypes = this.getXtypes(tab.xtypes);
             tabs.push({
                 title: tab.name,
                 items: [
-                    description,
-                    xtypes,
+                    this.getDescription(tab.description),
+                    this.getXtypes(tab.xtypes),
                 ]
             });
         }, this);
@@ -57,12 +55,11 @@ Ext.extend(ms2Extend.extend.panel.category, MODx.Panel, {
     },
 
     getXtypes: function (xtypesData) {
-        var xtypes = [];
+        let xtypes = [];
         Ext.each(xtypesData, function (xtype) {
-            var html = {
+            let html = {
                 xtype: xtype,
                 resource_id: this.record_id,
-                cls: 'main-wrapper',
             };
             if (!this.record_id) {
                 html = ms2Extend.component.notice(_('ms2extend_undefined'));
