@@ -1,110 +1,67 @@
 <?php
 
-//TODO
+define('MODX_CORE_PATH', dirname(dirname(dirname(__DIR__))) . '/');
+define('MODX_API_MODE', true);
 
 /**
- * Set msProductFile active = 0 before running this script
+ * @var modX $modx
+ * @noinspection PhpIncludeInspection
  */
+require_once MODX_CORE_PATH . 'model/modx/modx.class.php';
+$modx = new modX();
+$modx->initialize('mgr');
+$modx->setLogLevel(modX::LOG_LEVEL_ERROR);
+$modx->setLogTarget(XPDO_CLI_MODE ? 'ECHO' : 'HTML');
 
-require_once dirname(dirname(dirname(dirname(__FILE__)))) . '/config/config.inc.php';
+/** @var ms2Extend $service */
+$service = $modx->getService('ms2extend', 'ms2Extend', MODX_CORE_PATH . 'components/ms2extend/model/');
 
-if (!class_exists('AbstractCLI')) {
-    require_once MODX_CORE_PATH . 'components/abstractmodule/cli/abstractcli.class.php';
-}
 
-class ms2ExtendThumbnailsGenerate extends AbstractCLI
-{
-    const CLASS_KEY = 'msProductFile';
+$query = $modx->newQuery('msProductFile');
+$query->where([
+    'parent' => 0,
+    'active' => 0,
+]);
+$query->sortby('product_id', 'ASC');
 
-    /** @var int */
-    private $offset = 0;
+$service->log('START');
 
-    /** @var int */
-    private $limit = 0;
+$collection = $modx->getIterator('msProductFile', $query);
 
-    /** @var minishop2 */
-    private $miniShop2;
+$productId = 0;
 
-    /**
-     * regenerateThumbnails constructor.
-     * @param array $config
-     */
-    public function __construct($config = [])
-    {
-        parent::__construct($config);
-        if (isset($config[0])) {
-            $this->limit = $config[0];
+foreach ($collection as $item) {
+    //Delete old
+    $thumbs = $item->getMany('Children');
+    foreach ($thumbs as $thumb) {
+        if (!$thumb->remove()) {
+            $service->log('Error removing thumbnail instance for msProductFile with primary key ' . $item->get('id'));
         }
-        if (isset($config[1])) {
-            $this->offset = $config[1];
-        }
-        $this->miniShop2 = $this->modx->getService('miniShop2');
+        $service->log('Removed thumbnail instance for msProductFile with primary key ' . $item->get('id'));
     }
 
-    public function run()
-    {
-        $collection = $this->getProductImageCollection();
-        foreach ($collection as $item) {
-            if (!$this->deleteThumbnails($item)) {
-                continue;
-            }
-            if (!$this->generateThumbnails($item)) {
-                continue;
-            }
-            $item->set('active', 1);
-            $item->save();
-        }
-        $this->log('Finish');
+    //Generate new
+    if (!$item->generateThumbnails()) {
+        $service->log('Error generating thumbnails for msProductFile with primary key ' . $item->get('id'));
+        continue;
     }
+    $service->log('Generated thumbnails for msProductFile with primary key ' . $item->get('id'));
 
-    /**
-     * @return xPDOIterator
-     */
-    private function getProductImageCollection()
-    {
-        $query = $this->modx->newQuery(self::CLASS_KEY);
-        $query->where([
-            'parent' => 0,
-            'active' => 0,
+    //Set msProductData image/thumbnail fields
+    if ($item->get('product_id') !== $productId) {
+        $product = $modx->getObject('msProductData', [
+            'id' => $item->get('product_id')
         ]);
-        $query->sortby('product_id', 'ASC');
-        $query->limit($this->limit, $this->offset);
-        return $this->modx->getIterator(self::CLASS_KEY, $query);
+        if (!$product) {
+            continue;
+        }
+        $product->updateProductImage();
+        $service->log('Updated image fields for msProductData with primary key ' . $item->get('product_id'));
+        $productId = $item->get('product_id');
     }
 
-    /**
-     * @param msProductFile $image
-     * @return bool
-     */
-    private function deleteThumbnails(msProductFile $image)
-    {
-        $thumbs = $image->getMany('Children');
-        foreach ($thumbs as $thumb) {
-            if (!$thumb->remove()) {
-                $this->log('Error: deleting thumbnails for "' . $image->id . '"', modX::LOG_LEVEL_ERROR);
-                return false;
-            }
-        }
-        $this->log('Success: generating thumbnails for "' . $image->id . '"');
-        return true;
-    }
-
-    /**
-     * @param msProductFile $image
-     * @return bool
-     */
-    private function generateThumbnails(msProductFile $image)
-    {
-        if (!$image->generateThumbnails()) {
-            $this->log('Error: generating thumbnails for "' . $image->id . '"', modX::LOG_LEVEL_ERROR);
-            return false;
-        }
-        $this->log('Success: generating thumbnails for "' . $image->id . '"');
-        return true;
-    }
+    $item->set('active', 1);
+    $item->save();
 }
 
-array_shift($argv);
-$regenerateThumbnails = new ms2ExtendThumbnailsGenerate($argv);
-$regenerateThumbnails->run();
-exit();
+$service->log('Finish');
