@@ -45,5 +45,5 @@ ms2Extend.grid.producttab = function (config) {
     });
     ms2Extend.grid.producttab.superclass.constructor.call(this, config);
 };
-Ext.extend(ms2Extend.grid.producttab, ms2Extend.grid.abstract, {});
+Ext.extend(ms2Extend.grid.producttab, ms2Extend.grid.abstract);
 Ext.reg('ms2extend-grid-producttab', ms2Extend.grid.producttab);

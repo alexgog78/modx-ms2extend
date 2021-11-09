@@ -6,7 +6,7 @@ require_once MODX_CORE_PATH . 'components/abstractmodule/controllers/mgr/default
 class ms2ExtendMgrFieldsManagerController extends abstractModuleMgrDefaultController
 {
     /** @var string */
-    protected $pageTitle = 'ms2extend_fields';
+    protected $pageTitle = 'fields';
 
     /** @var array */
     protected $languageTopics = [

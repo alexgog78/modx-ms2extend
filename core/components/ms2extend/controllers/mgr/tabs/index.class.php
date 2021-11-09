@@ -6,7 +6,7 @@ require_once MODX_CORE_PATH . 'components/abstractmodule/controllers/mgr/default
 class ms2ExtendMgrTabsManagerController extends abstractModuleMgrDefaultController
 {
     /** @var string */
-    protected $pageTitle = 'ms2extend_tabs';
+    protected $pageTitle = 'tabs';
 
     /** @var array */
     protected $languageTopics = [

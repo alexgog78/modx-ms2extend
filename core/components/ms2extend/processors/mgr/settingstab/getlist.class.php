@@ -1,7 +1,7 @@
 <?php
 
 /** @noinspection PhpIncludeInspection */
-require_once MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/getlist.class.php';
+require_once MODX_CORE_PATH . 'components/abstractmodule/processors/getlist.class.php';
 
 class ms2extendSettingsTabGetListProcessor extends abstractModuleGetListProcessor
 {

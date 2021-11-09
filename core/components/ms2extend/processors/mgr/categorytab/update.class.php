@@ -1,7 +1,7 @@
 <?php
 
 /** @noinspection PhpIncludeInspection */
-require_once MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/update.class.php';
+require_once MODX_CORE_PATH . 'components/abstractmodule/processors/update.class.php';
 
 class ms2extendCategoryTabUpdateProcessor extends abstractModuleUpdateProcessor
 {

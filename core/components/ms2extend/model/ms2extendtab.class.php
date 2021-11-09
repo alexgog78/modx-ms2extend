@@ -7,11 +7,11 @@ abstract class ms2extendTab extends abstractSimpleObject
     /** @var bool */
     protected $timestamps = false;
 
-    /** @var string */
-    protected $eventMgrLayout;
+    /** @var bool */
+    protected $user = false;
 
     /** @var string */
-    protected $eventMgrGet;
+    protected $eventGet;
 
     /** @var string */
     protected $mgrPanel;
@@ -36,15 +36,11 @@ abstract class ms2extendTab extends abstractSimpleObject
     public function extendMgrControllers(modManagerController $controller)
     {
         $controller->addLexiconTopic($this->service::PKG_NAMESPACE . ':default');
-        $this->service->loadMgrAbstractCssJs($controller);
-        $this->service->loadMgrDefaultCssJs($controller);
+        $this->service->loadMgrAssets($controller);
 
-        $this->service->invokeEvent($this->eventMgrLayout, [
+        $response = $this->service->invokeEvent($this->eventGet, [
             'controller' => $controller,
-        ]);
-
-        $response = $this->service->invokeEvent($this->eventMgrGet, [
-            'record' => $this->controller->resource ?? null,
+            'record' => $controller->resource ?? null,
         ]);
         $tabsIds = $response['returnedValues']['tabsIds'] ?? [];
         $tabs = $this->getMgrCollection($tabsIds);
@@ -53,7 +49,7 @@ abstract class ms2extendTab extends abstractSimpleObject
             'record_id' => $controller->resource->id ?? null,
             'tabs' => $tabs,
         ]);
-        $controller->addHtml('<script type="text/javascript">Ext.applyIf(' . get_class($this->service) . '.config, ' . $configJs . ');</script>');
+        $controller->addHtml('<script type="text/javascript">Ext.applyIf(' . $this->service::PKG_NAME . '.config, ' . $configJs . ');</script>');
         $controller->addLastJavascript($this->service->jsUrl . 'mgr/ms2/' . $this->mgrPanel);
     }
 

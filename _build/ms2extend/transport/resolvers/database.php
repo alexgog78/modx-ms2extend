@@ -11,14 +11,17 @@ if ($transport->xpdo) {
     switch ($options[xPDOTransport::PACKAGE_ACTION]) {
         case xPDOTransport::ACTION_INSTALL:
         case xPDOTransport::ACTION_UPGRADE:
-            /** @var ms2Extend $service */
+            /**
+             * @var ms2Extend $service
+             * @var xPDOManager $manager
+             */
             $service = $modx->getService('ms2extend', 'ms2Extend', MODX_CORE_PATH . 'components/ms2extend/model/');
-            /** @var xPDOManager $manager */
             $manager = $modx->getManager();
             $mapFile = $service->modelPath . $service::PKG_NAMESPACE . '/metadata.mysql.php';
+
             /**
-             * @noinspection PhpIncludeInspection
              * @var $xpdo_meta_map
+             * @noinspection PhpIncludeInspection
              */
             include $mapFile;
             foreach ($xpdo_meta_map as $baseClass => $extends) {

@@ -6,6 +6,7 @@ class ms2Extend extends abstractModule
 {
     const PKG_VERSION = '1.1.0';
     const PKG_RELEASE = 'beta';
+    const PKG_NAME = 'ms2Extend';
     const PKG_NAMESPACE = 'ms2extend';
     const TABLE_PREFIX = 'ms2extend_';
 

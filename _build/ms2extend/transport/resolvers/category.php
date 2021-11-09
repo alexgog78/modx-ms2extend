@@ -11,7 +11,7 @@ if ($transport->xpdo) {
     switch ($options[xPDOTransport::PACKAGE_ACTION]) {
         case xPDOTransport::ACTION_INSTALL:
         case xPDOTransport::ACTION_UPGRADE:
-            $category = $modx->getObject('modCategory', ['category' => 'ms2Extend']);
+        if ($category = $modx->getObject('modCategory', ['category' => 'ms2Extend'])) {
             $plugins = $modx->getCollection('modPlugin', [
                 'name:IN' => [
                     'ms2Extend',
@@ -21,6 +21,7 @@ if ($transport->xpdo) {
                 $item->set('category', $category->get('id'));
                 $item->save();
             }
+        }
             break;
         case xPDOTransport::ACTION_UNINSTALL:
             break;

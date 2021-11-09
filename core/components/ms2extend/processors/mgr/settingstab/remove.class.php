@@ -1,7 +1,7 @@
 <?php
 
 /** @noinspection PhpIncludeInspection */
-require_once MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/remove.class.php';
+require_once MODX_CORE_PATH . 'components/abstractmodule/processors/remove.class.php';
 
 class ms2extendSettingsTabRemoveProcessor extends abstractModuleRemoveProcessor
 {

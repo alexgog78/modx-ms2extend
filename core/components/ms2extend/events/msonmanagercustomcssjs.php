@@ -1,6 +1,6 @@
 <?php
 
-class ms2ExtendEventmsOnManagerCustomCssJs extends abstractModuleEvent
+class ms2ExtendEventmsOnManagerCustomCssJs extends abstractModuleMgrEvent
 {
     /** @var string */
     private $page;
@@ -45,7 +45,7 @@ class ms2ExtendEventmsOnManagerCustomCssJs extends abstractModuleEvent
         return parent::checkPermissions();
     }
 
-    protected function handleEvent()
+    protected function run()
     {
         switch ($this->page) {
             case 'product_create':
